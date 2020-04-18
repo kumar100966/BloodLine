@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Bloodline"
+    }
+  },
+  "defaultProject": "Bloodline",
+  "cli": {
+    "analytics": "c6cb9800-f9d1-4460-bdcb-64f3ff5bd0b3"
+  }
 }
