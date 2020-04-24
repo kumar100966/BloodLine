@@ -17,11 +17,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    WelcomePageComponent
   ],
   imports: [
     MatCheckboxModule,
