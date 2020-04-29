@@ -1,0 +1,183 @@
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
+        href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+
+      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
+    </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class=" w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Info</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Account</a>
+    </div>
+</div>
+
+<!-- Header with image-->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+    
+    <div class="w3-display-left w3-center">
+      <div class="w3-text-white w3-padding-large" id="title">Blood<br>Donation</div>
+    </div>
+    
+</header>
+
+  
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large" id="body">
+  
+  <!-- About Container -->
+    <div class="w3-container" id="about">
+        <div class="w3-content" style="max-width:700px">
+            <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Information</span></h5>
+            <p>
+
+                Blood Transfusion Services is overseen by the National Blood Transfusion Service (NBTS)
+            </p>
+            <hr>
+            <h3>Vision</h3>
+            <p>
+                The NBTS will be the National Coordinator for a safe, adequate, sustainable and equitable supply of blood and blood products, 
+                based on 100% voluntary, non-remunerated blood donations within Trinidad and Tobago. 
+            </p>
+            <hr>
+            <h3>Mission</h3>
+            <p>
+                To transform the NBTS into the central reference centre for safe and adequate blood services 
+                within an Integrated Blood Network that is based on 100% voluntary non-remunerated blood donations.
+            </p>
+            <br> 
+            <p>
+                The NBTS collects, screens and distributes a safe, adequate supply of blood and blood components 
+                (such as plasma, red blood cells and platelets) to meet the medical needs of the country. 
+                It is the only authorized blood collection agency in Trinidad and Tobago.
+            </p>
+            <hr>
+            <div class="w3-card-4 w3-padding-24">
+
+                <header class="w3-container w3-black">
+                  <h6>There are six (6) blood collection centres located at the major hospitals across Trinidad and Tobago and a Mobile Unit.</h6>
+                </header>
+                
+                <div class="w3-container">
+                    <table class="w3-table-all">
+                        <thead>
+                          <tr class="w3-red">
+                            <th>Hospital</th>
+                            <th>Address</th>
+                          </tr>
+                        </thead>
+                        <tr>
+                            <td>Port-of-Spain General Hospital </td>
+                            <td>160 Charlotte Street, Port-of-Spain</td>
+
+                        </tr>
+                        <tr>
+                            <td>Eric Williams Medical Sciences Complex</td>
+                            <td>Uriah Butler Highway, Champs Fleurs</td>
+                        </tr>
+                        <tr>
+                            <td>Sangre Grande Hospital</td>
+                            <td>Ojoe Road, Sangre Grande</td>
+                        </tr>
+                        <tr>
+                            <td>Scarborough General Hospital</td>
+                            <td>Connector Road, Signal Hill, Scarborough, Tobago</td>
+                        </tr>
+                        <tr>
+                            <td>San Fernando General Hospital</td>
+                            <td>Paradise Pasture, Independence Avenue, San Fernando</td>
+                        </tr>
+                        <tr>
+                            <td>Point Fortin Area Hospital</td>
+                            <td>Volunteer Road, Mahaica Road, Point Fortin.</td>
+                        </tr>
+                      </table>
+                  
+                </div>
+                
+                <footer class="w3-container w3-black">
+                  <h5></h5>
+                </footer>
+                
+            </div>
+        </div>
+    </div>
+  
+    <!-- Menu Container -->
+    <div class="w3-container" id="menu">
+        <div class="w3-content" style="max-width:700px">
+    
+            <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE RULES</span></h5>
+            
+            <div class="w3-row w3-center w3-card w3-padding">
+                <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+                    <div class="w3-col s6 tablink">Eat</div>
+                </a>
+                <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+                    <div class="w3-col s6 tablink">Drink</div>
+                </a>
+            </div>
+    
+            <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+                <h5>Bread Basket</h5>
+                <p class="w3-text-grey">Assortment of fresh baked fruit breads and muffins 5.50</p><br>
+                
+                <h5>Honey Almond Granola with Fruits</h5>
+                <p class="w3-text-grey">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
+                
+                <h5>Belgian Waffle</h5>
+                <p class="w3-text-grey">Vanilla flavored batter with malted flour 7.50</p><br>
+                
+                <h5>Scrambled eggs</h5>
+                <p class="w3-text-grey">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
+                
+                <h5>Blueberry Pancakes</h5>
+                <p class="w3-text-grey">With syrup, butter and lots of berries 8.50</p>
+            </div>
+    
+            <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+                    <h5>Coffee</h5>
+                    <p class="w3-text-grey">Regular coffee 2.50</p><br>
+                
+                    <h5>Chocolato</h5>
+                    <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
+                
+                    <h5>Corretto</h5>
+                    <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
+                
+                    <h5>Iced tea</h5>
+                    <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
+                
+                    <h5>Soda</h5>
+                    <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
+            </div>  
+            <img src="/w3images/coffeehouse2.jpg" style="width:100%;max-width:1000px;margin-top:32px;">
+        </div>
+    </div>
+  
+  <!-- Contact/Area Container -->
+    <div class="w3-container" id="where" style="padding-bottom:32px;">
+        <div class="w3-content" style="max-width:700px">
+            <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
+            <p>Find us at some address at some place.</p>
+            <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
+            <p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
+            <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
+        </div>
+    </div>
+  
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
