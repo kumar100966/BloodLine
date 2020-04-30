@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AboutComponent } from './about/about.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { ViewAccountComponent } from './view-account/view-account.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
     LoginComponent,
     WelcomePageComponent,
     AboutComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    ViewAccountComponent
   ],
   imports: [
     MatCheckboxModule,
