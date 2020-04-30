@@ -1,1 +1,153 @@
-<p>my-account works!</p>
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
+        href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
+    </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Info</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Account</a>
+    </div>
+</div>
+
+
+
+<div class="w3-container w3-padding-64">
+
+    <div class="logo" style="margin-bottom: 50px;">
+        <img src="/assets/img/new.png" alt="Logo" style="width: 100px; height: 150px;"/>
+    </div>
+
+    <div *ngIf="true" >
+        <div class="w3-content" style="background-color: #f29189; margin-bottom: 50px;">
+            <h2>Login</h2>
+        </div>
+        
+        <form class="w3-content" id='myForm' >
+            
+            <div class="w3-content" style="margin-top: 20px; width: 70%;">
+                <label>User Name</label>
+                <input class="w3-input" type="text">
+            </div>
+            
+            <div class="w3-content" style="margin-top: 20px; width: 70%;">
+                <label>Password</label>
+                <input class="w3-input" type="text">
+            </div>
+        
+            <div class="w3-content" style="margin-top: 40px;">
+
+                <div class="w3-half w3-padding">
+                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit">
+                        Register
+                    </button>
+                </div>
+                
+                <div class="w3-half w3-padding">
+                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189;  width: 50%;" type="button">
+                        Login
+                    </button>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="false">
+
+        <div class="w3-content" style="background-color: #f29189; margin-bottom: 50px;">
+            <h2>Register</h2>
+        </div>
+        
+        <form class="w3-content" id='myForm'>
+
+
+            <div class="w3-row-padding">
+
+                <div class="w3-half w3-padding-16">
+                    <label>First Name</label>
+                    <input class="w3-input" type="text" placeholder="John">
+                </div>
+
+                <div class="w3-half w3-padding-16">
+                    <label>Last Name</label>
+                    <input class="w3-input" type="text" placeholder="Doe">
+                </div>
+
+            </div>
+
+            <div class="w3-row-padding">
+
+                <div class="w3-half w3-padding-16">
+                    <label>User Name</label>
+                    <input class="w3-input" type="text" placeholder="John365">
+                </div>
+
+                <div class="w3-half w3-padding-16">
+                    <label>Password</label>
+                    <input class="w3-input" type="text" placeholder="123abc">
+                </div>
+
+            </div>
+
+            <div class="w3-row-padding">
+
+                <div class="w3-quarter w3-padding-16">
+                    <label>Age</label>
+                    <input class="w3-input" type="text" placeholder="20">
+                </div>
+
+                <div class="w3-quarter w3-padding-16">
+                    <label>DOB</label>
+                    <input class="w3-input" type="text" placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="w3-quarter w3-padding-16">
+                    <label>Blood Group</label>
+                    <select class="w3-select" name="option">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="A+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="unknown">Do not Know</option>
+                    </select>
+                </div>
+
+                <div class="w3-quarter w3-padding-16">
+                    <label>Account Type</label>
+                    <select class="w3-select" name="option">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="Donor">Donor</option>
+                        <option value="Host">Host</option>
+                    </select>
+                </div>
+                
+
+            </div>
+            
+            <div class="w3-content" style="margin-top: 40px;">
+
+                <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit">Register
+                </button>
+                
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+
