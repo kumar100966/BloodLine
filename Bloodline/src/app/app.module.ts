@@ -19,13 +19,15 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AboutComponent } from './about/about.component';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     WelcomePageComponent,
-    AboutComponent
+    AboutComponent,
+    MyAccountComponent
   ],
   imports: [
     MatCheckboxModule,
