@@ -1,0 +1,63 @@
+<!-- Navbar -->
+<div class="w3-top" id="navbar">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
+        href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  
+      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Book Appoinment</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
+    </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class=" w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Info</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Account</a>
+    </div>
+</div>
+  
+<div><h1 id="heading">Schedule Appointment</h1></div> 
+
+<!--Stepper-->
+<div id="stepper">
+  <form [formGroup]="myForm">
+    <mat-vertical-stepper linear>
+      <mat-step label="Select Blood Donation Facility">
+        <!--Google Map-->
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="10">
+          <agm-marker *ngFor="let marker of coordinates; let i = index" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="setSelect(i)"></agm-marker>
+        </agm-map>
+        <mat-form-field id="centerSelect">
+          <mat-select matNativeControl required formControlName="center" [(ngModel)]="selectedOption">
+            <mat-option value="0">Port-of-Spain General Hospital</mat-option>
+            <mat-option value="1">Eric Williams Medical Sciences Complex</mat-option>
+            <mat-option value="2">Sangre Grande Hospital</mat-option>
+            <mat-option value="3">Scarborough General Hospital</mat-option>
+            <mat-option value="4">San Fernando General Hospital</mat-option>
+            <mat-option value="5">Point Fortin Area Hospital</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-step>
+
+      <mat-step label="Select Date">
+        Content 2
+      </mat-step>
+
+      <mat-step label="Select Time">
+        Content 3
+      </mat-step>
+
+      <mat-step label="Previous Donation">
+        Content 4
+      </mat-step>
+
+      <mat-step label="Done">
+        Content 5
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+</div>

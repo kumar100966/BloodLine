@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import {AgmCoreModule} from '@agm/core';
+
 //Start angular material components
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
@@ -13,6 +15,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 //End angular material components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +25,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AboutComponent } from './about/about.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ViewAccountComponent } from './view-account/view-account.component';
+import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { ViewAccountComponent } from './view-account/view-account.component';
     WelcomePageComponent,
     AboutComponent,
     MyAccountComponent,
-    ViewAccountComponent
+    ViewAccountComponent,
+    ScheduleAppointmentComponent
   ],
   imports: [
     MatCheckboxModule,
@@ -44,7 +50,12 @@ import { ViewAccountComponent } from './view-account/view-account.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatStepperModule,
+    MatSelectModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCMYHeM_coRX5X9SUc8plaqsewnd2qtBts'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
