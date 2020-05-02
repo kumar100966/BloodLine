@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -17,6 +17,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 //End angular material components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -53,8 +55,10 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
     HttpClientModule,
     MatStepperModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCMYHeM_coRX5X9SUc8plaqsewnd2qtBts'
+      apiKey: 'AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE'
     })
   ],
   providers: [],

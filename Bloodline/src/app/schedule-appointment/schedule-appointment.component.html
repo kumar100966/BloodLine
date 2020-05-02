@@ -24,15 +24,16 @@
 
 <!--Stepper-->
 <div id="stepper">
-  <form [formGroup]="myForm">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <mat-vertical-stepper linear>
+      <!--Donation Facility Selector-->
       <mat-step label="Select Blood Donation Facility">
         <!--Google Map-->
-        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="10">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="9">
           <agm-marker *ngFor="let marker of coordinates; let i = index" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="setSelect(i)"></agm-marker>
         </agm-map>
         <mat-form-field id="centerSelect">
-          <mat-select matNativeControl required formControlName="center" [(ngModel)]="selectedOption">
+          <mat-select matNativeControl placeholder="Select Blood Donation Facility" formControlName="center" [(ngModel)]="selectedOption" required>
             <mat-option value="0">Port-of-Spain General Hospital</mat-option>
             <mat-option value="1">Eric Williams Medical Sciences Complex</mat-option>
             <mat-option value="2">Sangre Grande Hospital</mat-option>
@@ -41,22 +42,41 @@
             <mat-option value="5">Point Fortin Area Hospital</mat-option>
           </mat-select>
         </mat-form-field>
+        <div>
+          <button mat-raised-button matStepperNext color="primary" type="button">Next</button>
+        </div>
       </mat-step>
 
+      <!--Date-->
       <mat-step label="Select Date">
-        Content 2
+          <mat-card id="calander">
+            <mat-calendar [dateFilter]="dateFilter" [minDate]="minDate" [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+          </mat-card>
+        <div>
+          <button mat-raised-button matStepperPrevious color="primary">Back</button>
+          <button mat-raised-button matStepperNext color="primary">Next</button>
+        </div>
       </mat-step>
 
+      <!--Time-->
       <mat-step label="Select Time">
-        Content 3
+        <mat-form-field>
+          <mat-label>Select Time</mat-label>
+          <mat-select formControlName="time" required>
+            <mat-option *ngFor="let time of times" [value]="time">{{time}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button matStepperPrevious color="primary">Back</button>
+          <button mat-raised-button matStepperNext color="primary">Next</button>
+        </div>
       </mat-step>
 
-      <mat-step label="Previous Donation">
-        Content 4
-      </mat-step>
-
+      <!--Done-->
       <mat-step label="Done">
-        Content 5
+          <mat-checkbox formControlName="noPreD" color="primary">I have not donated blood within the past 8 weeks.</mat-checkbox><br>
+          <button mat-raised-button matStepperPrevious color="primary">Back</button>
+          <button mat-raised-button type="submit" color="primary">Schedule Appoinment</button>
       </mat-step>
     </mat-vertical-stepper>
   </form>

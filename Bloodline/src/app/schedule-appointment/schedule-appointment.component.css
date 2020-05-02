@@ -7,7 +7,7 @@ agm-map {
 }
 
 #heading{
-    padding-top: 100px;
+    padding-top: 60px;
     font-size: 50px;
     color: #f44336;
 }
@@ -17,6 +17,11 @@ mat-select{
 }
 
 #centerSelect{
-    width: 80%;
+    width: 400px;
     margin-top: 10px;
+}
+
+#calander{
+    width: 350px;
+    margin: auto;
 }
