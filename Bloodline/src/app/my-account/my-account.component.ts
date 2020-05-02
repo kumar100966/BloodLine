@@ -12,4 +12,22 @@ export class MyAccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public choice = true;
+  public donationCentre = false; 
+
+  displayHostOption(event){
+    if(event.target.value == "Host"){
+      this.donationCentre = true; 
+    }else{
+      this.donationCentre = false; 
+    }
+    
+  }
+
+  onClick(){
+
+    this.choice = false; 
+    
+  }
+
 }

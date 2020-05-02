@@ -13,10 +13,9 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
 
 //setup routing
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'welcomePage', component: WelcomePageComponent}, 
-  { path: 'about', component: AboutComponent},
-  { path: 'MyAccount', component: MyAccountComponent},
+  { path: '', component: WelcomePageComponent}, 
+  { path: 'Info', component: AboutComponent},
+  { path: 'Login', component: MyAccountComponent},
   { path: 'ViewAccount', component: ViewAccountComponent },
   { path: 'scheduleappointment', component: ScheduleAppointmentComponent}
 ];

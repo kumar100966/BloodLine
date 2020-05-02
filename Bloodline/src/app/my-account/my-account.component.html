@@ -3,19 +3,21 @@
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
         href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
+      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+      <a href="/Info" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
+      <a href="/scheduleappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
+      <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
+      <a href="/Login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Login</a>
+      <a href="/ViewAccount" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
     </div>
   
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Info</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Account</a>
+        <a href="/Info" class="w3-bar-item w3-button w3-padding-large">Info</a>
+        <a href="/scheduleAppointment" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
+        <a href="/" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
+        <a href="/MyAccount" class="w3-bar-item w3-button w3-padding-large">Login</a>
+        <a href="/ViewAccount" class="w3-bar-item w3-button w3-padding-large">My Account</a>
     </div>
 </div>
 
@@ -27,27 +29,31 @@
         <img src="/assets/img/new.png" alt="Logo" style="width: 100px; height: 150px;"/>
     </div>
 
-    <div *ngIf="true" >
+    <div *ngIf="choice; else Register" >
         <div class="w3-content" style="background-color: #f29189; margin-bottom: 50px;">
             <h2>Login</h2>
         </div>
         
-        <form class="w3-content" id='myForm' >
+        <form class="w3-content" id='myForm' #loginForm="ngForm" >
             
             <div class="w3-content" style="margin-top: 20px; width: 70%;">
                 <label>User Name</label>
-                <input class="w3-input" type="text">
+                <input class="w3-input" type="text" name="userName" required #loginUsername="ngModel"
+                [class.w3-border-red]="loginUsername.invalid && loginUsername.touched"
+                ngModel>
             </div>
             
             <div class="w3-content" style="margin-top: 20px; width: 70%;">
                 <label>Password</label>
-                <input class="w3-input" type="text">
+                <input class="w3-input" type="text" name="password" required #loginPassword="ngModel"
+                [class.w3-border-red]="loginPassword.invalid && loginPassword.touched"
+                ngModel>
             </div>
         
             <div class="w3-content" style="margin-top: 40px;">
 
                 <div class="w3-half w3-padding">
-                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit">
+                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit" (click)="onClick()">
                         Register
                     </button>
                 </div>
@@ -62,92 +68,125 @@
         </form>
     </div>
 
-    <div *ngIf="false">
+    <ng-template #Register>
+        <div>
+            
+            <div class="w3-content" style="background-color: #f29189; margin-bottom: 50px;">
+                <h2>Register</h2>
+            </div>
+            
+            <form class="w3-content" id='myForm' #userData="ngForm">
 
-        <div class="w3-content" style="background-color: #f29189; margin-bottom: 50px;">
-            <h2>Register</h2>
+                <div class="w3-row-padding">
+
+                    <div class="w3-half w3-padding-16">
+                        <label>First Name</label>
+                        <input class="w3-input" type="text" placeholder="John" name="firstName" required #firstName="ngModel"
+                        [class.w3-border-red]="firstName.invalid && firstName.touched"
+                        ngModel>
+                    </div>
+
+                    <div class="w3-half w3-padding-16">
+                        <label>Last Name</label>
+                        <input class="w3-input" type="text" placeholder="Doe" name="lastName" required #lastName="ngModel" 
+                        [class.w3-border-red]="lastName.invalid && lastName.touched"
+                        ngModel>
+                    </div>
+
+                </div>
+
+                <div class="w3-row-padding">
+
+                    <div class="w3-half w3-padding-16">
+                        <label>User Name</label>
+                        <input class="w3-input" type="text" placeholder="John365" name="userName" required #userName="ngModel"
+                        [class.w3-border-red]="userName.invalid && userName.touched"
+                        ngModel>
+                    </div>
+
+                    <div class="w3-half w3-padding-16">
+                        <label>Password</label>
+                        <input class="w3-input" type="text" placeholder="123abc" name="password" required #password="ngModel" 
+                        [class.w3-border-red]="password.invalid && password.touched"
+                        ngModel>
+                    </div>
+
+                </div>
+
+                <div class="w3-row-padding">
+
+                    <div class="w3-quarter w3-padding-16">
+                        <label>Age</label>
+                        <input class="w3-input" type="text" placeholder="20" name="age" required #age="ngModel" 
+                        [class.w3-border-red]="age.invalid && age.touched"
+                        ngModel>
+                    </div>
+
+                    <div class="w3-quarter w3-padding-16">
+                        <label>DOB</label>
+                        <input class="w3-input" type="text" placeholder="dd/mm/yyyy" name="date" required #date="ngModel" 
+                        [class.w3-border-red]="date.invalid && date.touched" 
+                        ngModel>
+                    </div>
+
+                    <div class="w3-quarter w3-padding-16">
+                        <label>Blood Group</label>
+                        <select class="w3-select" name="bloodGroup" required #group="ngModel" 
+                        [class.w3-border-red]="group.invalid && group.touched"
+                        ngModel>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="A+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="unknown">Do not Know</option>
+                        </select>
+                    </div>
+
+                    <div class="w3-quarter w3-padding-16">
+                        <label>Account Type</label>
+                        <select class="w3-select" name="accountType" (input)="displayHostOption($event)" required #accountType="ngModel" 
+                        [class.w3-border-red]="accountType.invalid && accountType.touched"
+                        ngModel>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="Donor">Donor</option>
+                            <option value="Host">Host</option>
+                        </select>
+                    </div>
+
+                    
+                    <div class="w3-padding-16" *ngIf="donationCentre;">
+                        <label>Donation Centre</label>
+                        <select class="w3-select" name="accountType" required #donationCentre="ngModel" 
+                        [class.w3-border-red]="donationCentre.invalid && donationCentre.touched"
+                        ngModel>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="0">Port-of-Spain General Hospital</option>
+                            <option value="1">Eric Williams Medical Sciences Complex</option>
+                            <option value="2">Sangre Grande Hospital</option>
+                            <option value="3">Scarborough General Hospital</option>
+                            <option value="4">San Fernando General Hospital</option>
+                            <option value="5">Point Fortin Area Hospital</option>
+                        </select>
+                    </div>
+                    
+
+                </div>
+                
+                <div class="w3-content" style="margin-top: 40px;">
+
+                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit"><a href="/Login">Register</a>
+                    </button>
+                    
+                </div>
+                
+            </form>
         </div>
-        
-        <form class="w3-content" id='myForm'>
-
-
-            <div class="w3-row-padding">
-
-                <div class="w3-half w3-padding-16">
-                    <label>First Name</label>
-                    <input class="w3-input" type="text" placeholder="John">
-                </div>
-
-                <div class="w3-half w3-padding-16">
-                    <label>Last Name</label>
-                    <input class="w3-input" type="text" placeholder="Doe">
-                </div>
-
-            </div>
-
-            <div class="w3-row-padding">
-
-                <div class="w3-half w3-padding-16">
-                    <label>User Name</label>
-                    <input class="w3-input" type="text" placeholder="John365">
-                </div>
-
-                <div class="w3-half w3-padding-16">
-                    <label>Password</label>
-                    <input class="w3-input" type="text" placeholder="123abc">
-                </div>
-
-            </div>
-
-            <div class="w3-row-padding">
-
-                <div class="w3-quarter w3-padding-16">
-                    <label>Age</label>
-                    <input class="w3-input" type="text" placeholder="20">
-                </div>
-
-                <div class="w3-quarter w3-padding-16">
-                    <label>DOB</label>
-                    <input class="w3-input" type="text" placeholder="dd/mm/yyyy">
-                </div>
-
-                <div class="w3-quarter w3-padding-16">
-                    <label>Blood Group</label>
-                    <select class="w3-select" name="option">
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="A+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="unknown">Do not Know</option>
-                    </select>
-                </div>
-
-                <div class="w3-quarter w3-padding-16">
-                    <label>Account Type</label>
-                    <select class="w3-select" name="option">
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="Donor">Donor</option>
-                        <option value="Host">Host</option>
-                    </select>
-                </div>
-                
-
-            </div>
-            
-            <div class="w3-content" style="margin-top: 40px;">
-
-                <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit">Register
-                </button>
-                
-            </div>
-            
-        </form>
-    </div>
+    </ng-template>
 
 </div>
 
