@@ -20,16 +20,85 @@
       <a href="/ViewAccount" class="w3-bar-item w3-button w3-padding-large">My Account</a>
   </div>
 </div>
-  
-<div><h1 id="heading">Schedule Appointment</h1></div> 
 
-<!--Stepper-->
+<header class="w3-container w3-red w3-center" style="display: block; margin-top: 30px;">
+  <h1 class="w3-margin w3-jumbo w3-animate-opacity">Schedule Appointment</h1>
+</header>
+
+<mat-vertical-stepper linear>
+  <ng-template matStepperIcon="edit">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+
+  <!--Center Step-->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Select Blood Donation Facility</ng-template>
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="9" [streetViewControl]='false' [restriction]="restriction">
+        <agm-marker *ngFor="let marker of coordinates; let i = index" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="setSelect(i)"></agm-marker>
+      </agm-map>
+      <mat-form-field id="centerSelect">
+        <mat-select matNativeControl placeholder="Select Blood Donation Facility" formControlName="center" [(ngModel)]="selectedOption" required>
+          <mat-option *ngFor="let center of centers" [value]="center.value">{{center.viewValue}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  
+  <!--Date Step-->
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Select Date</ng-template>
+      <mat-card id="calander">
+        <mat-calendar [dateFilter]="dateFilter" [minDate]="minDate" [selected]="selectedDate" (selectedChange)="onSelectCalendar($event)"></mat-calendar>
+      </mat-card>
+      <mat-form-field id="dateinput">
+        <input matInput formControlName="date" readonly="true" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious color="primary">Back</button>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!--Time Step-->
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Select Time</ng-template>
+      <mat-form-field>
+        <mat-select formControlName="time" required>
+          <mat-option *ngFor="let time of times" [value]="time">{{time}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious color="primary">Back</button>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!--Done Step-->
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <mat-checkbox id="checkbox" (change)="changeCheck($event)" color="primary">I have not donated blood within the past 8 weeks.</mat-checkbox>
+    <button [disabled]="disabledAgreement" mat-raised-button type="submit" color="primary">Schedule Appoinment</button>
+  </mat-step>
+</mat-vertical-stepper>
+
+
+
+
+<!--Stepper
 <div id="stepper">
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <mat-vertical-stepper linear>
-      <!--Donation Facility Selector-->
+      
       <mat-step label="Select Blood Donation Facility">
-        <!--Google Map-->
+        
         <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="9">
           <agm-marker *ngFor="let marker of coordinates; let i = index" [latitude]="marker.latitude" [longitude]="marker.longitude" (markerClick)="setSelect(i)"></agm-marker>
         </agm-map>
@@ -48,7 +117,7 @@
         </div>
       </mat-step>
 
-      <!--Date-->
+      
       <mat-step label="Select Date">
           <mat-card id="calander">
             <mat-calendar [dateFilter]="dateFilter" [minDate]="minDate" [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
@@ -59,7 +128,7 @@
         </div>
       </mat-step>
 
-      <!--Time-->
+      
       <mat-step label="Select Time">
         <mat-form-field>
           <mat-label>Select Time</mat-label>
@@ -73,7 +142,7 @@
         </div>
       </mat-step>
 
-      <!--Done-->
+      
       <mat-step label="Done">
           <mat-checkbox formControlName="noPreD" color="primary">I have not donated blood within the past 8 weeks.</mat-checkbox><br>
           <button mat-raised-button matStepperPrevious color="primary">Back</button>
@@ -82,3 +151,4 @@
     </mat-vertical-stepper>
   </form>
 </div>
+-->

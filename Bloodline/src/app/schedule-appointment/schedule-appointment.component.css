@@ -16,6 +16,10 @@ mat-select{
     font-size: 20px;
 }
 
+#dateinput{
+    display: none;
+}
+
 #centerSelect{
     width: 400px;
     margin-top: 10px;
@@ -24,4 +28,10 @@ mat-select{
 #calander{
     width: 350px;
     margin: auto;
+    margin-bottom: 20px;
+}
+
+#checkbox{
+    display: block;
+    margin-bottom: 20px;
 }

@@ -9,7 +9,6 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 export class ScheduleAppointmentComponent implements OnInit {
 
-  myForm: FormGroup;
   selectedOption;
 
   //Sets map to Trinidad and Tobago
@@ -26,16 +25,41 @@ export class ScheduleAppointmentComponent implements OnInit {
     {latitude: 10.182640, longitude:-61.677529}
   ];
 
+  centers = [
+    {value: "0", viewValue: "Port-of-Spain General Hospital"},
+    {value: "1", viewValue: "Eric Williams Medical Sciences Complex"},
+    {value: "2", viewValue: "Sangre Grande Hospital"},
+    {value: "3", viewValue: "Scarborough General Hospital"},
+    {value: "4", viewValue: "San Fernando General Hospital"},
+    {value: "5", viewValue: "Point Fortin Area Hospital"}
+  ]
+
+  restriction = {
+    latLngBounds:{
+      north: 11.5, 
+      south: 9.8, 
+      west: -62.6, 
+      east: -60.0
+    }
+  }
+
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.myForm = this.fb.group({
-      center: [undefined, [Validators.required]],
-      date: ['', [Validators.required]],
-      time: ['', [Validators.required]],
-      noPreD: [false, [Validators.required]]
+
+    this.firstFormGroup = this.fb.group({
+      center: [undefined, Validators.required]
     });
-    this.myForm.valueChanges.subscribe(console.log)
+    this.secondFormGroup = this.fb.group({
+      date: ['', Validators.required]
+    });
+    this.thirdFormGroup = this.fb.group({
+      time: ['', Validators.required]
+    });
   }
 
   //Map
@@ -47,10 +71,10 @@ export class ScheduleAppointmentComponent implements OnInit {
   minDate = new Date(); //Used to limit calander to only the current and future dates
   selectedDate;
 
-  onSelect(event){
+  onSelectCalendar(event){
     this.selectedDate = event; //Gets date from calander
     const dateString = event.toDateString(); //Converts date to string
-    this.myForm.get('date').setValue(dateString);
+    this.secondFormGroup.get('date').setValue(dateString);
 
   }
 
@@ -61,13 +85,20 @@ export class ScheduleAppointmentComponent implements OnInit {
 
   //Time
 
-  times = ['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM'];
+  times = ['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM', '1:30PM', '2:00 PM', '2:30 PM', '3:00 PM'];
 
   //Done
 
-  onSubmit(){
-    console.log("Submitted");
+  disabledAgreement: boolean = true;
+  changeCheck(event){
+    this.disabledAgreement = !event.checked;
   }
+
+  onSubmit(){
+    
+  }
+
+  
 
 
 }

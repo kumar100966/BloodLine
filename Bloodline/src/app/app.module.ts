@@ -19,6 +19,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
 //End angular material components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -57,6 +58,7 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE'
     })
