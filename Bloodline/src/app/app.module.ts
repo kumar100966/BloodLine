@@ -18,8 +18,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
 //End angular material components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -29,6 +31,8 @@ import { AboutComponent } from './about/about.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ViewAccountComponent } from './view-account/view-account.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
+import { ManageAppointmentComponent } from './manage-appointment/manage-appointment.component';
+import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +42,11 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
     AboutComponent,
     MyAccountComponent,
     ViewAccountComponent,
-    ScheduleAppointmentComponent
+    ScheduleAppointmentComponent,
+    ManageAppointmentComponent,
+    AppointmentDialogComponent
   ],
+  entryComponents:[AppointmentDialogComponent],
   imports: [
     MatCheckboxModule,
     MatListModule,
@@ -59,6 +66,8 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    MatTabsModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE'
     })
