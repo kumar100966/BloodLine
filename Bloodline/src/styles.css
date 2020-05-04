@@ -5,3 +5,11 @@
     text-align: center; 
 }
 
+.snackbar {
+    background: #f44336;
+    color: white;
+}
+
+.mat-simple-snackbar-action {
+    color: white;
+}

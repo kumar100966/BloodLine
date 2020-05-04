@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>New Appointment</h1>
+<mat-dialog-content>
+    <mat-list>
+        <mat-list-item> {{data.name}} </mat-list-item>
+        <mat-list-item> {{data.date}} </mat-list-item>
+        <mat-list-item> {{data.time}} </mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="reject" (click)="openSnackBar('Appointment Rejected', 'Dismiss')">Reject Appointment</button>
+    <button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="confirm" (click)="openSnackBar('Appointment Confirmed', 'Dismiss')">Confirm Appointment</button>
+</mat-dialog-actions>
