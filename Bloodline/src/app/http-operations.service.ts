@@ -1,20 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpOperationsService {
 
-	public url = 'http://127.0.0.1:8080/'; 
-	public posts; 
+	public url = 'http://192.168.1.36:8080'; 
+	public token; 
 
-	constructor(public http: HttpClient) { 
+	constructor() { 
 		
 	}
 
-	
+	async login(data){
+		let response = await fetch(`${this.url}/login`, {
+			method: 'POST', 
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data)
+		}); 
+
+		let result = await response.json(); 
+		this.token = (result.token);
+		console.log(this.token);  
+
+	}
+
 
 }

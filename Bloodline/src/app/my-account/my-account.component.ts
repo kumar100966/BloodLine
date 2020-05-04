@@ -36,11 +36,11 @@ export class MyAccountComponent implements OnInit {
   onSubmit(loginForm){
 
     let data = {
-      username: loginForm.value.userName, 
+      username: loginForm.value.username, 
       password: loginForm.value.password
     };
 
-    console.log(this.ajax.login(data)); 
+    this.ajax.login(data);
 
   }
 
