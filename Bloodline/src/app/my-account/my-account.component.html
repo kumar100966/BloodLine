@@ -34,13 +34,14 @@
             <h2>Login</h2>
         </div>
         
-        <form class="w3-content" id='myForm' #loginForm="ngForm" >
-            
+        <form class="w3-content" id='myForm' #loginForm="ngForm" novalidate (ngSubmit)="onSubmit(loginForm);"  >
+
             <div class="w3-content" style="margin-top: 20px; width: 70%;">
                 <label>User Name</label>
                 <input class="w3-input" type="text" name="userName" required #loginUsername="ngModel"
                 [class.w3-border-red]="loginUsername.invalid && loginUsername.touched"
                 ngModel>
+                
             </div>
             
             <div class="w3-content" style="margin-top: 20px; width: 70%;">
@@ -53,13 +54,13 @@
             <div class="w3-content" style="margin-top: 40px;">
 
                 <div class="w3-half w3-padding">
-                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit" (click)="onClick()">
+                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="button" (click)="onClick()">
                         Register
                     </button>
                 </div>
                 
                 <div class="w3-half w3-padding">
-                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189;  width: 50%;" type="button">
+                    <button class="w3-btn w3-round-xlarge" [disabled]="loginForm.form.invalid" style="background-color: #f29189;  width: 50%;" type="submit">
                         Login
                     </button>
                 </div>
@@ -179,7 +180,7 @@
                 
                 <div class="w3-content" style="margin-top: 40px;">
 
-                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit"><a href="/Login">Register</a>
+                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit" [disabled]="userData.form.invalid"><a href="/Login">Register</a>
                     </button>
                     
                 </div>

@@ -29,6 +29,7 @@ import { AboutComponent } from './about/about.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ViewAccountComponent } from './view-account/view-account.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
+import { HttpOperationsService } from './http-operations.service'
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
       apiKey: 'AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE'
     })
   ],
-  providers: [],
+  providers: [HttpOperationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

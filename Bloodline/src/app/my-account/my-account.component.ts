@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { HttpOperationsService } from '../http-operations.service';
 
 @Component({
   selector: 'app-my-account',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ajax: HttpOperationsService) { }
 
   ngOnInit(): void {
   }
@@ -29,5 +31,19 @@ export class MyAccountComponent implements OnInit {
     this.choice = false; 
     
   }
+
+
+  onSubmit(loginForm){
+
+    let data = {
+      username: loginForm.value.userName, 
+      password: loginForm.value.password
+    };
+
+    console.log(this.ajax.login(data)); 
+
+  }
+
+
 
 }
