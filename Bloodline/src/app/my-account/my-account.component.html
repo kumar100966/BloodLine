@@ -29,6 +29,15 @@
         <img src="/assets/img/new.png" alt="Logo" style="width: 100px; height: 150px;"/>
     </div>
 
+    <div *ngIf="!checkLoginSuccess" class="w3-panel w3-red">
+        <h3>Error!</h3>
+        <p>Username or password Invalid. Please try again.</p>
+    </div> 
+
+    <div *ngIf="finishedLogin" class="w3-panel w3-pale-green">
+        <h3>Login Successful</h3>
+    </div> 
+
     <div *ngIf="choice; else Register" >
         <div class="w3-content" style="background-color: #f29189; margin-bottom: 50px;">
             <h2>Login</h2>

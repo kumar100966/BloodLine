@@ -23,9 +23,15 @@ export class HttpOperationsService {
 			body: JSON.stringify(data)
 		}); 
 
-		let result = await response.json(); 
-		this.token = (result.token);
-		console.log(this.token);  
+		
+
+		if(response.ok){
+			let result = await response.json(); 
+			this.token = result.token; 
+			return true; 
+		}
+
+		return false; 
 
 	}
 

@@ -16,6 +16,8 @@ export class MyAccountComponent implements OnInit {
 
   public choice = true;
   public donationCentre = false; 
+  public checkLoginSuccess = true; 
+  public finishedLogin = false; 
 
   displayHostOption(event){
     if(event.target.value == "Host"){
@@ -29,18 +31,26 @@ export class MyAccountComponent implements OnInit {
   onClick(){
 
     this.choice = false; 
+    this.checkLoginSuccess = true; 
+    this.finishedLogin = false; 
     
   }
 
 
-  onSubmit(loginForm){
+  async onSubmit(loginForm){
 
     let data = {
       username: loginForm.value.username, 
       password: loginForm.value.password
     };
 
-    this.ajax.login(data);
+    this.checkLoginSuccess = await this.ajax.login(data);
+    if(this.checkLoginSuccess){
+      this.finishedLogin = true; 
+    }else
+    {
+      this.finishedLogin = false; 
+    }
 
   }
 
