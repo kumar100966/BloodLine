@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div style="background-color: #0D3B66; height:100vh;" (click)="onLoad();">
+<div style="background-color: #0D3B66; height:100vh;">
 
     <div class="w3-content" style="padding-top: 10vh;">
 
@@ -31,7 +31,7 @@
                 <h3 class="w3-opacity"><b>My Account</b> </h3>
                 <img src="/assets/img/avatar.webp" alt="Avatar" style="width:80%">
                 
-                <div *ngIf="loggedIn; else placeholder">
+                <div *ngIf="user; else placeholder">
                     <div class="w3-opacity"><b>Name: <h5><b>{{user.fName}} {{user.lName}}</b></h5></b></div>
                     <div class="w3-opacity"><b>Username: {{user.username}}</b></div>
                     <div class="w3-opacity"><b> Age: {{user.age}}</b></div>

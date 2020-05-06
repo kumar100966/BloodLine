@@ -59,13 +59,11 @@ export class HttpOperationsService {
 
 	async requestUser(){
 
-		console.log(this.token); 
-
 		let response = await fetch(`${this.url}/user`, {
 			method: 'GET', 
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': `JWT ${this.token}` 
+				'Authorization': this.token 
 			}
 		}); 
 
