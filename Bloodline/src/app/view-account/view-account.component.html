@@ -2,26 +2,26 @@
 <div class="w3-top">
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
-        href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
-      <a href="/Info" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
-      <a href="/scheduleappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
-      <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
-      <a href="/Login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
-      <a href="/ViewAccount" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">My Account</a>
+      routerLink="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a routerLink="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+      <a routerLink="/Info" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
+      <a routerLink="/scheduleappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
+      <a routerLink="/manageappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
+      <a routerLink="/Login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
+      <a routerLink="/ViewAccount" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">My Account</a>
     </div>
   
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="/Info" class="w3-bar-item w3-button w3-padding-large">Info</a>
-        <a href="/scheduleAppointment" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
-        <a href="/" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
-        <a href="/MyAccount" class="w3-bar-item w3-button w3-padding-large">Login</a>
-        <a href="/ViewAccount" class="w3-bar-item w3-button w3-padding-large">My Account</a>
+        <a routerLink="/Info" class="w3-bar-item w3-button w3-padding-large">Info</a>
+        <a routerLink="/scheduleAppointment" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
+        <a routerLink="/manageappointment" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
+        <a routerLink="/MyAccount" class="w3-bar-item w3-button w3-padding-large">Login</a>
+        <a routerLink="/ViewAccount" class="w3-bar-item w3-button w3-padding-large">My Account</a>
     </div>
 </div>
 
-<div style="background-color: #0D3B66; height:100vh;">
+<div style="background-color: #0D3B66; height:100vh;" (click)="onLoad();">
 
     <div class="w3-content" style="padding-top: 10vh;">
 
@@ -31,13 +31,19 @@
                 <h3 class="w3-opacity"><b>My Account</b> </h3>
                 <img src="/assets/img/avatar.webp" alt="Avatar" style="width:80%">
                 
-                <div class="w3-opacity"><b>Name: <h5><b>John Doe</b></h5></b></div>
-                <div class="w3-opacity"><b>Username: John365</b></div>
-                <div class="w3-opacity"><b> Age: 20</b></div>
-                <div class="w3-opacity"><b>Date of Birth: 03/10/1999</b></div>
-                <div class="w3-opacity"><b>Blood Group: O Negative</b></div>
-                <div class="w3-opacity"><b>Account Type: Donor</b></div>
-                <div class="w3-opacity"><b>BloodCenter: None</b></div>                    
+                <div *ngIf="loggedIn; else placeholder">
+                    <div class="w3-opacity"><b>Name: <h5><b>{{user.fName}} {{user.lName}}</b></h5></b></div>
+                    <div class="w3-opacity"><b>Username: {{user.username}}</b></div>
+                    <div class="w3-opacity"><b> Age: {{user.age}}</b></div>
+                    <div class="w3-opacity"><b>Date of Birth: {{user.DOB}}</b></div>
+                    <div class="w3-opacity"><b>Blood Group: {{user.bloodGroup}}</b></div>
+                    <div class="w3-opacity"><b>Account Type: {{user.userType}}</b></div>
+                    <div class="w3-opacity"><b>BloodCenter: {{user.bloodCentreId}}</b></div>    
+                </div>
+
+                <ng-template #placeholder>
+                    <div class="w3-opacity"><h5><b>PLEASE LOG IN TO VIEW PROFILE</b></h5></div>
+                </ng-template>
             </div>
     
         </div>

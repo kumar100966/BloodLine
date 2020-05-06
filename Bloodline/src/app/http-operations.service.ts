@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class HttpOperationsService {
 
 	public url = 'http://192.168.1.36:8080'; 
-	public token; 
+	public token: string; 
 
 	constructor() { 
 		
@@ -33,6 +31,50 @@ export class HttpOperationsService {
 
 		return false; 
 
+	}
+
+
+	async sendUserData(data){
+
+		let response = await fetch(`${this.url}/user`, {
+
+			method: 'Post', 
+			headers: {
+				'Content-Type': 'application/json',
+			}, 
+			body: JSON.stringify(data)
+
+		}); 
+
+		if(response.ok){
+			let result = await response.text(); 
+			console.log(result); 
+			return true; 
+		}else{
+			console.log("error"); 
+			return false; 
+		}
+	}
+
+
+	async requestUser(){
+
+		console.log(this.token); 
+
+		let response = await fetch(`${this.url}/user`, {
+			method: 'GET', 
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `JWT ${this.token}` 
+			}
+		}); 
+
+		if(response.ok){
+			let result = await response.json(); 
+			return result; 
+		}else{
+			return null; 
+		}
 	}
 
 

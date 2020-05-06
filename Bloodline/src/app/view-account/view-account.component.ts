@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpOperationsService } from '../http-operations.service'; 
 
 @Component({
   selector: 'app-view-account',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAccountComponent implements OnInit {
 
-  constructor() { }
+  public loggedIn = false; 
+  public user; 
+
+  constructor(private ajax:HttpOperationsService) { }
 
   ngOnInit(): void {
+  }
+
+  async onLoad(){
+    this.user = await this.ajax.requestUser();
+    console.log(this.ajax.token); 
+    
   }
 
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { JsonPipe } from '@angular/common';
 import { HttpOperationsService } from '../http-operations.service';
 
 @Component({
@@ -18,6 +17,8 @@ export class MyAccountComponent implements OnInit {
   public donationCentre = false; 
   public checkLoginSuccess = true; 
   public finishedLogin = false; 
+  public registerFailed = false; 
+  public registerSuccess = false; 
 
   displayHostOption(event){
     if(event.target.value == "Host"){
@@ -52,6 +53,28 @@ export class MyAccountComponent implements OnInit {
       this.finishedLogin = false; 
     }
 
+  }
+
+  async onSubmitUserData(userInfo){
+
+    let data = {
+      'username': userInfo.value.username, 
+      'userType': userInfo.value.accountType, 
+      'fName': userInfo.value.firstName, 
+      'lName': userInfo.value.lastName, 
+      'age': userInfo.value.age , 
+      'DOB': userInfo.value.DOB, 
+      'bloodGroup': userInfo.value.bloodGroup, 
+      'password': userInfo.value.password
+    }; 
+
+    this.registerSuccess =  await this.ajax.sendUserData(data); 
+
+    if(!this.registerSuccess){
+      this.registerFailed = true; 
+    }
+
+    
   }
 
 

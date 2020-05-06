@@ -2,22 +2,22 @@
 <div class="w3-top">
     <div class="w3-bar w3-red w3-card w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
-        href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
-      <a href="/Info" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
-      <a href="/scheduleappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
-      <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
-      <a href="/Login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Login</a>
-      <a href="/ViewAccount" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
+      routerLink ="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a routerLink ="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+      <a routerLink ="/Info" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
+      <a routerLink ="/scheduleappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
+      <a routerLink ="/manageappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
+      <a routerLink ="/Login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Login</a>
+      <a routerLink ="/ViewAccount" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
     </div>
   
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="/Info" class="w3-bar-item w3-button w3-padding-large">Info</a>
-        <a href="/scheduleAppointment" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
-        <a href="/" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
-        <a href="/MyAccount" class="w3-bar-item w3-button w3-padding-large">Login</a>
-        <a href="/ViewAccount" class="w3-bar-item w3-button w3-padding-large">My Account</a>
+        <a routerLink ="/Info" class="w3-bar-item w3-button w3-padding-large">Info</a>
+        <a routerLink ="/scheduleAppointment" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
+        <a routerLink ="/manageappointment" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
+        <a routerLink ="/MyAccount" class="w3-bar-item w3-button w3-padding-large">Login</a>
+        <a routerLink ="/ViewAccount" class="w3-bar-item w3-button w3-padding-large">My Account</a>
     </div>
 </div>
 
@@ -37,6 +37,16 @@
     <div *ngIf="finishedLogin" class="w3-panel w3-pale-green">
         <h3>Login Successful</h3>
     </div> 
+
+    <div *ngIf="registerFailed" class="w3-panel w3-red">
+        <h3>Error!</h3>
+        <p>Username has already been taken. Please try again.</p>
+    </div> 
+
+    <div *ngIf="registerSuccess" class="w3-panel w3-pale-green">
+        <h3>Registration Successful</h3>
+    </div> 
+
 
     <div *ngIf="choice; else Register" >
         <div class="w3-content" style="background-color: #f29189; margin-bottom: 50px;">
@@ -85,7 +95,7 @@
                 <h2>Register</h2>
             </div>
             
-            <form class="w3-content" id='myForm' #userData="ngForm">
+            <form class="w3-content" id='myForm' #userData="ngForm"  novalidate (ngSubmit)="onSubmitUserData(userData);"  >
 
                 <div class="w3-row-padding">
 
@@ -109,7 +119,7 @@
 
                     <div class="w3-half w3-padding-16">
                         <label>User Name</label>
-                        <input class="w3-input" type="text" placeholder="John365" name="userName" required #userName="ngModel"
+                        <input class="w3-input" type="text" placeholder="John365" name="username" required #userName="ngModel"
                         [class.w3-border-red]="userName.invalid && userName.touched"
                         ngModel>
                     </div>
@@ -134,7 +144,7 @@
 
                     <div class="w3-quarter w3-padding-16">
                         <label>DOB</label>
-                        <input class="w3-input" type="text" placeholder="dd/mm/yyyy" name="date" required #date="ngModel" 
+                        <input class="w3-input" type="text" placeholder="dd/mm/yyyy" name="DOB" required #date="ngModel" 
                         [class.w3-border-red]="date.invalid && date.touched" 
                         ngModel>
                     </div>
@@ -171,7 +181,7 @@
                     
                     <div class="w3-padding-16" *ngIf="donationCentre;">
                         <label>Donation Centre</label>
-                        <select class="w3-select" name="accountType" required #donationCentre="ngModel" 
+                        <select class="w3-select" name="centre" required #donationCentre="ngModel" 
                         [class.w3-border-red]="donationCentre.invalid && donationCentre.touched"
                         ngModel>
                             <option value="" disabled selected>Choose your option</option>
@@ -189,8 +199,7 @@
                 
                 <div class="w3-content" style="margin-top: 40px;">
 
-                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit" [disabled]="userData.form.invalid"><a href="/Login">Register</a>
-                    </button>
+                    <button class="w3-btn w3-round-xlarge" style="background-color: #f29189; width: 50%;" type="submit" [disabled]="userData.form.invalid">Register</button>
                     
                 </div>
                 
