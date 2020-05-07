@@ -23,7 +23,7 @@ export class MyAccountComponent implements OnInit {
   public userdata;
 
   displayHostOption(event){
-    if(event.target.value == "Host"){
+    if(event.target.value == "h"){
       this.donationCentre = true; 
     }else{
       this.donationCentre = false; 
@@ -70,13 +70,16 @@ export class MyAccountComponent implements OnInit {
       'age': userInfo.value.age , 
       'DOB': userInfo.value.DOB, 
       'bloodGroup': userInfo.value.bloodGroup, 
-      'password': userInfo.value.password
+      'password': userInfo.value.password, 
+      'bloodCentreId': userInfo.value.centre
     }; 
 
     this.registerSuccess =  await this.ajax.sendUserData(data); 
 
     if(!this.registerSuccess){
       this.registerFailed = true; 
+    }else{
+      this.registerFailed = false; 
     }
 
     

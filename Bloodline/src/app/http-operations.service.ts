@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HttpOperationsService {
 
-	public url = 'https://bloodline--akeelhenry.repl.co'; 
+	public url = 'http://192.168.1.36:8080'; 
 	public token: string; 
 
 	constructor(private cookieService: CookieService) { 
@@ -49,10 +49,8 @@ export class HttpOperationsService {
 
 		if(response.ok){
 			let result = await response.text(); 
-			console.log(result); 
 			return true; 
 		}else{
-			console.log("error"); 
 			return false; 
 		}
 	}
@@ -77,6 +75,8 @@ export class HttpOperationsService {
 	}
 
 	async createAppointment(data){
+
+		console.log(this.cookieService.get('user')); 
 		let response = await fetch(`${this.url}/appointment`, {
 			method: 'POST', 
 			headers: {
