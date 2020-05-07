@@ -32,7 +32,7 @@ export class MyAccountComponent implements OnInit {
   onClick(){
 
     this.choice = false; 
-    this.checkLoginSuccess; 
+    this.checkLoginSuccess = false; 
     this.finishedLogin = false; 
     
   }

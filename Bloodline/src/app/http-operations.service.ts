@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HttpOperationsService {
 
-	public url = 'https://bloodline--akeelhenry.repl.co'; 
+	public url = 'https://guarded-river-97089.herokuapp.com'; 
 	public token: string; 
 
 	constructor(private cookieService: CookieService) { 
