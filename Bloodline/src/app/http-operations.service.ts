@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class HttpOperationsService {
 
-	public url = 'http://192.168.1.36:8080'; 
+	public url = 'https://bloodline--akeelhenry.repl.co'; 
 	public token: string; 
 
 	constructor(private cookieService: CookieService) { 
@@ -26,8 +26,9 @@ export class HttpOperationsService {
 
 		if(response.ok){
 			let result = await response.json(); 
-			this.token = result.token; 
-			return this.token; 
+			this.token = result.token;
+			this.cookieService.set('user', this.token)
+			return true; 
 		}
 
 		return false; 

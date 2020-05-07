@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpOperationsService } from '../http-operations.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-my-account',
@@ -9,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(private ajax: HttpOperationsService, private cookieService: CookieService) { }
+  constructor(private ajax: HttpOperationsService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +19,6 @@ export class MyAccountComponent implements OnInit {
   public finishedLogin = false; 
   public registerFailed = false; 
   public registerSuccess = false; 
-  public userdata;
 
   displayHostOption(event){
     if(event.target.value == "h"){
@@ -47,15 +45,12 @@ export class MyAccountComponent implements OnInit {
       password: loginForm.value.password
     };
 
-    this.userdata = await this.ajax.login(data);
-    if(this.userdata != ""){
-      this.finishedLogin = true;
-      this.checkLoginSuccess = true;
-      this.cookieService.set('user', this.userdata)
+    this.checkLoginSuccess = await this.ajax.login(data);
+    if(this.checkLoginSuccess){
+      this.finishedLogin = true; 
     }else
     {
       this.finishedLogin = false;
-      this.checkLoginSuccess = false; 
     }
 
   }
