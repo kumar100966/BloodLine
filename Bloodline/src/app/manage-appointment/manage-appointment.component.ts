@@ -8,7 +8,7 @@ import { AppointmentDialogComponent } from '../appointment-dialog/appointment-di
   styleUrls: ['./manage-appointment.component.css']
 })
 export class ManageAppointmentComponent implements OnInit {
-
+  
   appoinments = [
     {
       name: "Akeel Henry",
@@ -26,28 +26,30 @@ export class ManageAppointmentComponent implements OnInit {
     }
   ]
 
-  constructor(public dialog: MatDialog) { }
+constructor(public dialog: MatDialog) { }
 
-  openDialog(i){
-    let dialogRef = this.dialog.open(AppointmentDialogComponent, 
-      {data: 
-        {
-          name: this.appoinments[i].name,
-          date: this.appoinments[i].date,
-          time: this.appoinments[i].time
-        }
-      });
+openDialog(i){
+  let dialogRef = this.dialog.open(AppointmentDialogComponent, 
+    {data: 
+      {
+        name: this.appoinments[i].name,
+        date: this.appoinments[i].date,
+        time: this.appoinments[i].time
+      }
+    });
+        
+    dialogRef.disableClose = true
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if(result = "confirm"){
         this.appoinments[i].status = "confirmed"
       }
-      else{
+      else if(result = "rejected") {
         this.appoinments[i].status = "rejected"
       }
     });
-  }
+}
 
   ngOnInit(): void {
   }

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpOperationsService {
 
-	public url = 'http://192.168.1.36:8080'; 
+	public url = 'https://bloodline--akeelhenry.repl.co'; 
 	public token: string; 
 
-	constructor() { 
+	constructor(private cookieService: CookieService) { 
 		
 	}
 
@@ -26,7 +27,7 @@ export class HttpOperationsService {
 		if(response.ok){
 			let result = await response.json(); 
 			this.token = result.token; 
-			return true; 
+			return this.token; 
 		}
 
 		return false; 
@@ -63,7 +64,7 @@ export class HttpOperationsService {
 			method: 'GET', 
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': this.token 
+				'Authorization': this.cookieService.get('user')
 			}
 		}); 
 
@@ -72,6 +73,26 @@ export class HttpOperationsService {
 			return result; 
 		}else{
 			return null; 
+		}
+	}
+
+	async createAppointment(data){
+		let response = await fetch(`${this.url}/appointment`, {
+			method: 'POST', 
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': this.cookieService.get('user')
+			},
+			body: JSON.stringify(data)
+		});
+		
+		if(response.ok){
+			let result = await response.text(); 
+			console.log(result); 
+			return true; 
+		}else{
+			console.log("error"); 
+			return false; 
 		}
 	}
 

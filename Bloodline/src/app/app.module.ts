@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -72,6 +73,7 @@ import { AppointmentDialogComponent } from './appointment-dialog/appointment-dia
       apiKey: 'AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE'
     })
   ],
+  providers: [ CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -85,6 +85,6 @@
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <mat-checkbox id="checkbox" (change)="changeCheck($event)" color="primary">I have not donated blood within the past 8 weeks.</mat-checkbox>
-    <button [disabled]="disabledAgreement" mat-raised-button type="submit" color="primary">Schedule Appoinment</button>
+    <button [disabled]="disabledAgreement" mat-raised-button type="submit" color="primary" (click)="onSubmit()">Schedule Appoinment</button>
   </mat-step>
 </mat-vertical-stepper>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { HttpOperationsService } from '../http-operations.service';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -26,12 +27,12 @@ export class ScheduleAppointmentComponent implements OnInit {
   ];
 
   centers = [
-    {value: "0", viewValue: "Port-of-Spain General Hospital"},
-    {value: "1", viewValue: "Eric Williams Medical Sciences Complex"},
-    {value: "2", viewValue: "Sangre Grande Hospital"},
-    {value: "3", viewValue: "Scarborough General Hospital"},
-    {value: "4", viewValue: "San Fernando General Hospital"},
-    {value: "5", viewValue: "Point Fortin Area Hospital"}
+    {value: "1", viewValue: "Port-of-Spain General Hospital"},
+    {value: "2", viewValue: "Eric Williams Medical Sciences Complex"},
+    {value: "3", viewValue: "Sangre Grande Hospital"},
+    {value: "4", viewValue: "Scarborough General Hospital"},
+    {value: "5", viewValue: "San Fernando General Hospital"},
+    {value: "6", viewValue: "Point Fortin Area Hospital"}
   ]
 
   restriction = {
@@ -47,7 +48,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private ajax: HttpOperationsService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -64,7 +65,7 @@ export class ScheduleAppointmentComponent implements OnInit {
 
   //Map
   setSelect(i){
-    this.selectedOption = ""+i+""; //Sets dropdown value after clicking marker on map
+    this.selectedOption = ""+(i+1)+""; //Sets dropdown value after clicking marker on map
   }
 
   //Date
@@ -94,8 +95,18 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.disabledAgreement = !event.checked;
   }
 
-  onSubmit(){
-    
+  async onSubmit(){
+    let user = await this.ajax.requestUser();
+
+    let data = {
+      date: this.secondFormGroup.get('date').value,
+      time: this.thirdFormGroup.get('time').value,
+      center: this.firstFormGroup.get('center').value,
+      userId: user.id
+    };
+
+    let test = await this.ajax.createAppointment(data); 
+
   }
 
   
