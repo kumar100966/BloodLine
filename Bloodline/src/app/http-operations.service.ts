@@ -7,7 +7,9 @@ import { CookieService } from 'ngx-cookie-service';
 export class HttpOperationsService {
 
 	public url = 'https://guarded-river-97089.herokuapp.com'; 
-	public token: string; 
+	public token; 
+
+
 
 	constructor(private cookieService: CookieService) { 
 		
@@ -27,7 +29,7 @@ export class HttpOperationsService {
 		if(response.ok){
 			let result = await response.json(); 
 			this.token = result.token;
-			this.cookieService.set('user', this.token)
+			localStorage.setItem('token', this.token);
 			return true; 
 		}
 
@@ -63,7 +65,7 @@ export class HttpOperationsService {
 			method: 'GET', 
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': this.cookieService.get('user')
+				'Authorization': localStorage.getItem('token')
 			}
 		}); 
 
@@ -77,12 +79,11 @@ export class HttpOperationsService {
 
 	async createAppointment(data){
 
-		console.log(this.cookieService.get('user')); 
 		let response = await fetch(`${this.url}/appointment`, {
 			method: 'POST', 
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': this.cookieService.get('user')
+				'Authorization': localStorage.getItem('token')
 			},
 			body: JSON.stringify(data)
 		});
@@ -97,5 +98,61 @@ export class HttpOperationsService {
 		}
 	}
 
+	async requestUserAppointment(id){
+
+		let response = await fetch(`${this.url}/appointment/user/${id}`, {
+			method: 'GET', 
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.getItem('token')
+			}
+		}); 
+
+		if(response.ok){
+			let result = await response.json(); 
+			return result; 
+		}else{
+			return null; 
+		}
+	}
+
+	
+
+	async requestAppointments(id){
+
+		let response = await fetch(`${this.url}/appointment/centre/${id}`, {
+			method: 'GET', 
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.getItem('token')
+			}
+		}); 
+
+		if(response.ok){
+			let result = await response.json(); 
+			return result; 
+		}else{
+			return null; 
+		}
+	}
+
+	async cancleAppointment(id){
+		let response = await fetch(`${this.url}/appointment/${id}`, {
+			method: 'PUT', 
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.getItem('token')
+			},
+			body: JSON.stringify({status:"Cancelled"})
+		});
+
+		if(response.ok){
+			let result = await response.json(); 
+			console.log(result)
+			return true; 
+		}else{
+			return false; 
+		}
+	}
 
 }

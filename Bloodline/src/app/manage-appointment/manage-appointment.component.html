@@ -1,37 +1,18 @@
 <!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
-      routerLink ="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a routerLink ="/" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
-      <a routerLink ="/Info" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
-      <a routerLink ="/scheduleappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
-      <a routerLink ="/manageappointment" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Manage Appointment</a>
-      <a routerLink ="/Login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
-      <a routerLink ="/ViewAccount" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
-    </div>
-  
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a routerLink ="/Info" class="w3-bar-item w3-button w3-padding-large">Info</a>
-        <a routerLink ="/scheduleappointment" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
-        <a routerLink ="/manageappointment" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
-        <a routerLink ="/Login" class="w3-bar-item w3-button w3-padding-large">Login</a>
-        <a routerLink ="/ViewAccount" id="account" class="w3-bar-item w3-button w3-padding-large">My Account</a>
-    </div>
-  </div>
+<app-navbar></app-navbar>
   
   <header class="w3-container w3-red w3-center" style="display: block; margin-top: 30px;">
     <h1 class="w3-margin w3-jumbo w3-animate-opacity">Manage Appointments</h1>
   </header>
 
+  <div *ngIf="host; else placeholder">
   <mat-tab-group mat-align-tabs="center" dynamicHeight>
     <mat-tab label="New Appointments">
-      <mat-list role="list" *ngFor="let appoinment of appoinments, let i = index">
-        <mat-card *ngIf="appoinment.status=='new'">
+      <mat-list role="list" *ngFor="let appoinment of appointments, let i = index">
+        <mat-card *ngIf="appoinment.status=='Scheduled'">
             <mat-list-item>
                 <img matListAvatar src="/assets/img/avatar.webp" alt="userimage">
-                <h1 id="name" matLine>{{appoinment.name}}</h1>
+                <h1 id="name" matLine>User ID: {{appoinment.userId}}</h1>
                 <p id="username" matLine>{{appoinment.username}}</p>
                 <button mat-raised-button color="primary" (click)="openDialog(i)">View</button>
             </mat-list-item>
@@ -39,7 +20,7 @@
       </mat-list>
     </mat-tab>
     <mat-tab label="Upcoming Appointments">
-        <mat-list role="list" *ngFor="let appoinment of appoinments, let i = index">
+        <mat-list role="list" *ngFor="let appoinment of appointments, let i = index">
             <mat-card *ngIf="appoinment.status=='confirmed'">
                 <mat-list-item>
                     <img matListAvatar src="/assets/img/avatar.webp" alt="userimage">
@@ -51,3 +32,8 @@
           </mat-list>
     </mat-tab>
   </mat-tab-group>
+</div>
+
+<ng-template #placeholder>
+  <div class="w3-opacity" style="margin-top: 15%;"><h1><b>401 - You Are Not Authorized To View This Page </b></h1></div>
+</ng-template>

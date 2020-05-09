@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { HttpOperationsService } from '../http-operations.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -11,6 +12,10 @@ import { HttpOperationsService } from '../http-operations.service';
 export class ScheduleAppointmentComponent implements OnInit {
 
   selectedOption;
+  hasAppointment = false;
+  noAppointment = false;
+  loading = true;
+  appointment;
 
   //Sets map to Trinidad and Tobago
   latitude = 10.556176;
@@ -48,7 +53,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  constructor(private ajax: HttpOperationsService, private fb: FormBuilder) { }
+  constructor(private ajax: HttpOperationsService, private fb: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -61,6 +66,35 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.thirdFormGroup = this.fb.group({
       time: ['', Validators.required]
     });
+
+    this.appointmentCheck();
+  }
+
+   //Check for appointment
+
+  async appointmentCheck(){
+    this.appointment = await this.ajax.requestUserAppointment(localStorage.getItem('userid'));
+    
+    if(this.appointment == null){
+      this.noAppointment = true;
+      this.loading = false;
+      this.hasAppointment = false;
+    }
+    else{
+      for(let i in this.appointment){
+        if(this.appointment[i].status != "Cancelled"){
+          this.noAppointment = false;
+          this.loading = false;
+          this.hasAppointment = true;
+          break;
+        }
+        else{
+          this.noAppointment = true;
+          this.loading = false;
+          this.hasAppointment = false;
+        }
+      }
+    }
   }
 
   //Map
@@ -91,25 +125,43 @@ export class ScheduleAppointmentComponent implements OnInit {
   //Done
 
   disabledAgreement: boolean = true;
+  
   changeCheck(event){
     this.disabledAgreement = !event.checked;
   }
 
   async onSubmit(){
-    let user = await this.ajax.requestUser();
 
     let data = {
       date: this.secondFormGroup.get('date').value,
       time: this.thirdFormGroup.get('time').value,
-      center: this.firstFormGroup.get('center').value,
-      userId: user.id
+      centreId: this.firstFormGroup.get('center').value,
+      userId: localStorage.getItem('userid')
     };
 
-    let test = await this.ajax.createAppointment(data); 
+    console.log(data)
+
+    let success = await this.ajax.createAppointment(data); 
+
+    if(success == true){
+      let snackBarRef = this.snackBar.open("Appointment Created", "Dismiss", {duration: 2000, panelClass: ['snackbar']});
+      
+      snackBarRef.afterDismissed().subscribe(() => {
+        location.reload();
+      });
+    }
+    else{
+      let snackBarRef = this.snackBar.open("Error, Please Try Again", "Dismiss", {duration: 5000, panelClass: ['snackbar']});
+    }
 
   }
 
-  
-
+  async cancleAppointment(){
+    for(let i in this.appointment){
+      if(this.appointment[i].status == "Confirmed" || this.appointment[i].status == "Scheduled"){
+        let result = await this.ajax.cancleAppointment(this.appointment[i].aptId);
+      }
+    }
+  }
 
 }

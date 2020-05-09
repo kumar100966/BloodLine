@@ -23,6 +23,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 //End angular material components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -34,6 +35,7 @@ import { ViewAccountComponent } from './view-account/view-account.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { ManageAppointmentComponent } from './manage-appointment/manage-appointment.component';
 import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { AppointmentDialogComponent } from './appointment-dialog/appointment-dia
     ViewAccountComponent,
     ScheduleAppointmentComponent,
     ManageAppointmentComponent,
-    AppointmentDialogComponent
+    AppointmentDialogComponent,
+    NavbarComponent
   ],
   entryComponents:[AppointmentDialogComponent],
   imports: [
@@ -69,6 +72,7 @@ import { AppointmentDialogComponent } from './appointment-dialog/appointment-dia
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE'
     })

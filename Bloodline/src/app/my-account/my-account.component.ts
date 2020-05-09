@@ -50,6 +50,19 @@ export class MyAccountComponent implements OnInit {
     this.checkLoginSuccess = await this.ajax.login(data);
     if(this.checkLoginSuccess){
       this.finishedLogin = true; 
+
+      let user = await this.ajax.requestUser();
+
+      localStorage.setItem('userid', user.id);
+      localStorage.setItem('usertype', user.userType);
+
+      if (user.userType == "h"){
+        localStorage.setItem('bloodcentreid', user.bloodCentreId);
+      }
+      else{
+        localStorage.removeItem('bloodcentreid');
+      }
+
     }else
     {
       this.finishedLogin = false;

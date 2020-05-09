@@ -35,3 +35,9 @@ mat-select{
     display: block;
     margin-bottom: 20px;
 }
+
+mat-card{
+    width: 65%;
+    margin: 10px auto 10px auto;
+    background-color: rgb(253, 253, 253);
+}

@@ -20,22 +20,22 @@ export class ViewAccountComponent implements OnInit {
   async onLoad(){
     this.user = await this.ajax.requestUser();
     switch(this.user.bloodCentreId){
-      case 0: 
+      case 1: 
         this.user.bloodCentreId = 'Port-of-Spain General Hospital'; 
         break; 
-      case 1: 
+      case 2: 
         this.user.bloodCentreId = 'Eric Williams Medical Sciences Complex'; 
         break;
-      case 2: 
+      case 3: 
         this.user.bloodCentreId = 'Sangre Grande Hospital'; 
         break;
-      case 3: 
+      case 4: 
         this.user.bloodCentreId = 'Scarborough General Hospital'; 
         break;
-      case 4: 
+      case 5: 
         this.user.bloodCentreId = 'San Fernando General Hospital'; 
         break;
-      case 5: 
+      case 6: 
         this.user.bloodCentreId = 'Point Fortin Area Hospital'; 
         break;
       default: 

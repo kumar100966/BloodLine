@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { AppointmentDialogComponent } from '../appointment-dialog/appointment-dialog.component';
+import { HttpOperationsService } from '../http-operations.service'; 
 
 @Component({
   selector: 'app-manage-appointment',
@@ -9,32 +10,19 @@ import { AppointmentDialogComponent } from '../appointment-dialog/appointment-di
 })
 export class ManageAppointmentComponent implements OnInit {
   
-  appoinments = [
-    {
-      name: "Akeel Henry",
-      username: "@akeelhenry",
-      date: "12/12/2020",
-      time: "1:00 PM",
-      status: "new"
-    },
-    {
-      name: "John Doe",
-      username: "@johnD",
-      date: "12/12/2020",
-      time: "1:00 PM",
-      status: "new"
-    }
-  ]
 
-constructor(public dialog: MatDialog) { }
+public host = false;
+appointments;
+
+constructor(public dialog: MatDialog, private ajax:HttpOperationsService) { }
 
 openDialog(i){
   let dialogRef = this.dialog.open(AppointmentDialogComponent, 
     {data: 
       {
-        name: this.appoinments[i].name,
-        date: this.appoinments[i].date,
-        time: this.appoinments[i].time
+        name: this.appointments[i].userId,
+        date: this.appointments[i].date,
+        time: this.appointments[i].time
       }
     });
         
@@ -43,15 +31,31 @@ openDialog(i){
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if(result = "confirm"){
-        this.appoinments[i].status = "confirmed"
+        this.appointments[i].status = "confirmed"
       }
       else if(result = "rejected") {
-        this.appoinments[i].status = "rejected"
+        this.appointments[i].status = "rejected"
       }
     });
 }
 
   ngOnInit(): void {
+    this.onLoad();
   }
+
+  async onLoad(){
+
+    if(localStorage.getItem('usertype') == "h"){
+      this.host = true;
+      this.appointments = await this.ajax.requestAppointments(localStorage.getItem('bloodcenterid'))
+      console.log(this.appointments)
+    }
+    else{
+      this.host = false;
+    }
+
+  }
+
+
 
 }
