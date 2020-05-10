@@ -35,7 +35,6 @@ import { ViewAccountComponent } from './view-account/view-account.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { ManageAppointmentComponent } from './manage-appointment/manage-appointment.component';
 import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
-import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     ViewAccountComponent,
     ScheduleAppointmentComponent,
     ManageAppointmentComponent,
-    AppointmentDialogComponent,
-    NavbarComponent
+    AppointmentDialogComponent
   ],
   entryComponents:[AppointmentDialogComponent],
   imports: [

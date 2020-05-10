@@ -1,1 +1,24 @@
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
+        routerLink="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
+        <a routerLink="/Info" routerLinkActive="active" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Info</a>
+        <a routerLink="/scheduleappointment" routerLinkActive="active" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Book Appoinment</a>
+        <a routerLink="/manageappointment" id="manage" routerLinkActive="active" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Manage Appointment</a>
+        <a routerLink="/ViewAccount" routerLinkActive="active" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My Account</a>
+        <a routerLink="/Login" id="login" routerLinkActive="active" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
+        <a id="logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" (click)="logout()">Logout</a>
+    </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a routerLink="/Info" class="w3-bar-item w3-button w3-padding-large">Info</a>
+        <a routerLink="/scheduleappointment" class="w3-bar-item w3-button w3-padding-large">Book Appoinment</a>
+        <a routerLink="/manageappointment" class="w3-bar-item w3-button w3-padding-large">Manage Appointment</a>
+        <a routerLink="/Login" class="w3-bar-item w3-button w3-padding-large">Login</a>
+        <a routerLink="/ViewAccount" class="w3-bar-item w3-button w3-padding-large">My Account</a>
+    </div>
+</div>
 <router-outlet></router-outlet>

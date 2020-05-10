@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpOperationsService } from '../http-operations.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-account',
@@ -8,7 +9,7 @@ import { HttpOperationsService } from '../http-operations.service';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(private ajax: HttpOperationsService) { }
+  constructor(private ajax: HttpOperationsService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -62,6 +63,11 @@ export class MyAccountComponent implements OnInit {
       else{
         localStorage.removeItem('bloodcentreid');
       }
+
+      this.router.navigate([''])
+      setTimeout(()=>{
+        window.location.reload();
+      }, 50);
 
     }else
     {

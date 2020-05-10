@@ -159,7 +159,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   async cancleAppointment(){
     for(let i in this.appointment){
       if(this.appointment[i].status == "Confirmed" || this.appointment[i].status == "Scheduled"){
-        let result = await this.ajax.cancleAppointment(this.appointment[i].aptId);
+        let result = await this.ajax.changeAppointmentStatus(this.appointment[i].aptId, "Canceled");
       }
     }
   }

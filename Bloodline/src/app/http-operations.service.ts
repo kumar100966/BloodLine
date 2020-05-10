@@ -77,6 +77,24 @@ export class HttpOperationsService {
 		}
 	}
 
+	async requestUserId(id){
+
+		let response = await fetch(`${this.url}/user/${id}`, {
+			method: 'GET', 
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.getItem('token')
+			}
+		}); 
+
+		if(response.ok){
+			let result = await response.json(); 
+			return result; 
+		}else{
+			return null; 
+		}
+	}
+
 	async createAppointment(data){
 
 		let response = await fetch(`${this.url}/appointment`, {
@@ -136,23 +154,22 @@ export class HttpOperationsService {
 		}
 	}
 
-	async cancleAppointment(id){
+	async changeAppointmentStatus(id, status){
 		let response = await fetch(`${this.url}/appointment/${id}`, {
 			method: 'PUT', 
 			headers: {
 				'Content-Type': 'application/json',
 				'Authorization': localStorage.getItem('token')
 			},
-			body: JSON.stringify({status:"Cancelled"})
+			body: JSON.stringify({status:status})
 		});
 
 		if(response.ok){
-			let result = await response.json(); 
-			console.log(result)
 			return true; 
 		}else{
 			return false; 
 		}
 	}
+	
 
 }

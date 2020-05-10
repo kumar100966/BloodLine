@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpOperationsService } from '../http-operations.service';
 
 @Component({
   selector: 'app-appointment-dialog',
@@ -9,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AppointmentDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar, private ajax:HttpOperationsService) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +18,14 @@ export class AppointmentDialogComponent implements OnInit {
   openSnackBar(message, action) {
     let snackBarRef = this.snackBar.open(message, action, {duration: 5000, panelClass: ['snackbar']});
   }
+
+  async rejectAppointment(id){
+    let result = await this.ajax.changeAppointmentStatus(id,"Rejected");
+  }
+
+  async confirmAppointment(id){
+    let result = await this.ajax.changeAppointmentStatus(id,"Confirmed");
+  }
+  
 
 }

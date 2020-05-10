@@ -1,32 +1,36 @@
-<!-- Navbar -->
-<app-navbar></app-navbar>
-  
   <header class="w3-container w3-red w3-center" style="display: block; margin-top: 30px;">
-    <h1 class="w3-margin w3-jumbo w3-animate-opacity">Manage Appointments</h1>
+    <h1 class="w3-margin w3-xxxlarge w3-animate-opacity">Manage Appointments</h1>
   </header>
 
   <div *ngIf="host; else placeholder">
   <mat-tab-group mat-align-tabs="center" dynamicHeight>
     <mat-tab label="New Appointments">
-      <mat-list role="list" *ngFor="let appoinment of appointments, let i = index">
-        <mat-card *ngIf="appoinment.status=='Scheduled'">
+      <mat-list role="list" *ngFor="let d of data">
+        <mat-card *ngIf="d.appointment.status=='Scheduled'">
             <mat-list-item>
                 <img matListAvatar src="/assets/img/avatar.webp" alt="userimage">
-                <h1 id="name" matLine>User ID: {{appoinment.userId}}</h1>
-                <p id="username" matLine>{{appoinment.username}}</p>
-                <button mat-raised-button color="primary" (click)="openDialog(i)">View</button>
+                <h1 id="name" matLine>User Name: {{d.user.username}}</h1>
+                <h1 id="name" matLine>Name: {{d.user.fName}} {{d.user.lName}}</h1>
+                <h1 id="name" matLine>Date: {{d.appointment.date}}</h1>
+                <h1 id="name" matLine>Time: {{d.appointment.time}}</h1>
+            </mat-list-item>
+            <mat-list-item>
+              <div style="display: inline-block; text-align: center; margin: auto;">
+                <button mat-raised-button color="primary" (click)="rejectAppointment(d.appointment.aptId)">Reject</button>
+                <button mat-raised-button color="primary" (click)="confirmAppointment(d.appointment.aptId)">Confirm</button>
+              </div>
             </mat-list-item>
         </mat-card>
       </mat-list>
     </mat-tab>
     <mat-tab label="Upcoming Appointments">
         <mat-list role="list" *ngFor="let appoinment of appointments, let i = index">
-            <mat-card *ngIf="appoinment.status=='confirmed'">
+            <mat-card *ngIf="appoinment.status=='Confirmed'">
                 <mat-list-item>
                     <img matListAvatar src="/assets/img/avatar.webp" alt="userimage">
                     <h1 id="name" matLine>{{appoinment.name}}</h1>
                     <p id="username" matLine>{{appoinment.username}}</p>
-                    <button mat-raised-button color="primary" (click)="openDialog(i)">View</button>
+                    <button mat-raised-button color="primary">View</button>
                 </mat-list-item>
             </mat-card>
           </mat-list>

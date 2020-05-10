@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { AppointmentDialogComponent } from '../appointment-dialog/appointment-dialog.component';
 import { HttpOperationsService } from '../http-operations.service'; 
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-manage-appointment',
@@ -11,33 +12,13 @@ import { HttpOperationsService } from '../http-operations.service';
 export class ManageAppointmentComponent implements OnInit {
   
 
-public host = false;
+host = false;
 appointments;
+users = [];
+data = [];
 
-constructor(public dialog: MatDialog, private ajax:HttpOperationsService) { }
+constructor(public dialog: MatDialog, private ajax:HttpOperationsService, private snackBar: MatSnackBar) { }
 
-openDialog(i){
-  let dialogRef = this.dialog.open(AppointmentDialogComponent, 
-    {data: 
-      {
-        name: this.appointments[i].userId,
-        date: this.appointments[i].date,
-        time: this.appointments[i].time
-      }
-    });
-        
-    dialogRef.disableClose = true
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if(result = "confirm"){
-        this.appointments[i].status = "confirmed"
-      }
-      else if(result = "rejected") {
-        this.appointments[i].status = "rejected"
-      }
-    });
-}
 
   ngOnInit(): void {
     this.onLoad();
@@ -47,12 +28,28 @@ openDialog(i){
 
     if(localStorage.getItem('usertype') == "h"){
       this.host = true;
-      this.appointments = await this.ajax.requestAppointments(localStorage.getItem('bloodcenterid'))
-      console.log(this.appointments)
+      this.appointments = await this.ajax.requestAppointments(localStorage.getItem('bloodcentreid'))
+
+      for(let i in this.appointments){
+        this.data.push({
+          appointment: this.appointments[i],
+          user: await this.ajax.requestUserId(this.appointments[i].userId)
+        })
+      }
     }
     else{
       this.host = false;
     }
+
+  }
+
+  async rejectAppointment(id){
+    let result = await this.ajax.changeAppointmentStatus(id,"Rejected");
+
+  }
+
+  async confirmAppointment(id){
+    let result = await this.ajax.changeAppointmentStatus(id,"Confirmed");
 
   }
 

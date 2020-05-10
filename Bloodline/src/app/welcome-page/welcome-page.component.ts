@@ -10,6 +10,7 @@ export class WelcomePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
