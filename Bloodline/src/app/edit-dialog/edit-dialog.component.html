@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Edit Appointment</h2>
+
+<mat-dialog-content [formGroup]="form">
+    <h4>Select Date</h4>
+
+    <mat-card id="calander">
+        <mat-calendar [dateFilter]="dateFilter" [minDate]="minDate" [selected]="selectedDate" (selectedChange)="onSelectCalendar($event)"></mat-calendar>
+    </mat-card>
+    <mat-form-field id="dateinput" style="display: none;">
+    <input matInput formControlName="date" readonly="true" required>
+    </mat-form-field>
+
+    <h4>Select Time</h4>
+
+    <mat-form-field>
+        <mat-select formControlName="time" required placeholder="Select Time" floatlLabel="never">
+            <mat-option *ngFor="let time of times" [value]="time">{{time}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <div style="margin: auto;">
+        <button class="mat-raised-button"(click)="close()">Close</button>
+        <button class="mat-raised-button mat-primary"(click)="save()" [disabled]="form.invalid">Save Appointment</button>
+    </div>
+</mat-dialog-actions>

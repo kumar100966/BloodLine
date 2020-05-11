@@ -95,7 +95,13 @@ export class MyAccountComponent implements OnInit {
     if(!this.registerSuccess){
       this.registerFailed = true; 
     }else{
-      this.registerFailed = false; 
+      this.registerFailed = false;
+    
+      setTimeout(()=>{
+        window.location.reload();
+      }, 100);
+
+      this.router.navigate([''])
     }
 
     

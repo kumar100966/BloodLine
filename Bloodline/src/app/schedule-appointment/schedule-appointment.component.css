@@ -12,7 +12,7 @@ agm-map {
     color: #f44336;
 }
 
-mat-select{
+#timeselect{
     font-size: 20px;
 }
 
@@ -40,4 +40,18 @@ mat-card{
     width: 65%;
     margin: 10px auto 10px auto;
     background-color: rgb(253, 253, 253);
+}
+
+#appointmentcard{
+    margin-top: 10%;
+}
+
+#loading{
+    margin: auto; 
+    margin-top: 10%;
+}
+
+button{
+    margin-left: 10px;
+    margin-right: 10px;
 }

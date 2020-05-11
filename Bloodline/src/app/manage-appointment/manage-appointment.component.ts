@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { AppointmentDialogComponent } from '../appointment-dialog/appointment-dialog.component';
 import { HttpOperationsService } from '../http-operations.service'; 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -30,11 +29,13 @@ constructor(public dialog: MatDialog, private ajax:HttpOperationsService, privat
       this.host = true;
       this.appointments = await this.ajax.requestAppointments(localStorage.getItem('bloodcentreid'))
 
-      for(let i in this.appointments){
-        this.data.push({
-          appointment: this.appointments[i],
-          user: await this.ajax.requestUserId(this.appointments[i].userId)
-        })
+      if(this.appointments != null){
+        for(let i in this.appointments){
+          this.data.push({
+            appointment: this.appointments[i],
+            user: await this.ajax.requestUserId(this.appointments[i].userId)
+          })
+        }
       }
     }
     else{
@@ -46,11 +47,26 @@ constructor(public dialog: MatDialog, private ajax:HttpOperationsService, privat
   async rejectAppointment(id){
     let result = await this.ajax.changeAppointmentStatus(id,"Rejected");
 
+    if(result = true){
+      location.reload()
+    }
+
   }
 
   async confirmAppointment(id){
     let result = await this.ajax.changeAppointmentStatus(id,"Confirmed");
 
+    if(result = true){
+      location.reload()
+    }
+  }
+
+  async completeAppointment(id){
+    let result = await this.ajax.changeAppointmentStatus(id,"Completed");
+
+    if(result = true){
+      location.reload()
+    }
   }
 
 

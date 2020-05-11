@@ -115,7 +115,7 @@ export class HttpOperationsService {
 			return false; 
 		}
 	}
-
+	
 	async requestUserAppointment(id){
 
 		let response = await fetch(`${this.url}/appointment/user/${id}`, {
@@ -133,8 +133,6 @@ export class HttpOperationsService {
 			return null; 
 		}
 	}
-
-	
 
 	async requestAppointments(id){
 
@@ -162,6 +160,23 @@ export class HttpOperationsService {
 				'Authorization': localStorage.getItem('token')
 			},
 			body: JSON.stringify({status:status})
+		});
+
+		if(response.ok){
+			return true; 
+		}else{
+			return false; 
+		}
+	}
+
+	async editAppointmentDetials(id, data){
+		let response = await fetch(`${this.url}/appointment/${id}`, {
+			method: 'PUT', 
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.getItem('token')
+			},
+			body: JSON.stringify(data)
 		});
 
 		if(response.ok){

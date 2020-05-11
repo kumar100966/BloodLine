@@ -26,7 +26,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 //End angular material components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AboutComponent } from './about/about.component';
@@ -34,21 +33,20 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { ViewAccountComponent } from './view-account/view-account.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 import { ManageAppointmentComponent } from './manage-appointment/manage-appointment.component';
-import { AppointmentDialogComponent } from './appointment-dialog/appointment-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     WelcomePageComponent,
     AboutComponent,
     MyAccountComponent,
     ViewAccountComponent,
     ScheduleAppointmentComponent,
     ManageAppointmentComponent,
-    AppointmentDialogComponent
+    EditDialogComponent,
   ],
-  entryComponents:[AppointmentDialogComponent],
+  entryComponents:[EditDialogComponent],
   imports: [
     MatCheckboxModule,
     MatListModule,

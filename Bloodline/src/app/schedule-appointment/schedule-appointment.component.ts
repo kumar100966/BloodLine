@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { HttpOperationsService } from '../http-operations.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -16,6 +18,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   noAppointment = false;
   loading = true;
   appointment;
+  rejected = false;
 
   //Sets map to Trinidad and Tobago
   latitude = 10.556176;
@@ -52,8 +55,9 @@ export class ScheduleAppointmentComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  editFormGroup: FormGroup;
 
-  constructor(private ajax: HttpOperationsService, private fb: FormBuilder, private snackBar: MatSnackBar) { }
+  constructor(private ajax: HttpOperationsService, private fb: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -66,6 +70,9 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.thirdFormGroup = this.fb.group({
       time: ['', Validators.required]
     });
+    this.editFormGroup = this.fb.group({
+
+    })
 
     this.appointmentCheck();
   }
@@ -74,26 +81,24 @@ export class ScheduleAppointmentComponent implements OnInit {
 
   async appointmentCheck(){
     this.appointment = await this.ajax.requestUserAppointment(localStorage.getItem('userid'));
-    
-    if(this.appointment == null){
-      this.noAppointment = true;
+    console.log(this.appointment);
+
+    if(this.appointment[this.appointment.length-1].status == "Scheduled" || this.appointment[this.appointment.length-1].status == "Confirmed"){
+      this.hasAppointment = true;
+      this.noAppointment = false;
       this.loading = false;
-      this.hasAppointment = false;
     }
-    else{
-      for(let i in this.appointment){
-        if(this.appointment[i].status != "Cancelled"){
-          this.noAppointment = false;
-          this.loading = false;
-          this.hasAppointment = true;
-          break;
-        }
-        else{
-          this.noAppointment = true;
-          this.loading = false;
-          this.hasAppointment = false;
-        }
-      }
+    else if(this.appointment[this.appointment.length-1].status == "Cancelled"){
+      this.hasAppointment = false;
+      this.loading = false;
+      this.noAppointment = true;
+    }
+
+    if(this.appointment[this.appointment.length-1].status == "Rejected"){
+      this.rejected = true;
+      this.loading = false;
+      this.noAppointment = true;
+      this.hasAppointment = false;
     }
   }
 
@@ -159,9 +164,21 @@ export class ScheduleAppointmentComponent implements OnInit {
   async cancleAppointment(){
     for(let i in this.appointment){
       if(this.appointment[i].status == "Confirmed" || this.appointment[i].status == "Scheduled"){
-        let result = await this.ajax.changeAppointmentStatus(this.appointment[i].aptId, "Canceled");
+        let result = await this.ajax.changeAppointmentStatus(this.appointment[i].aptId, "Cancelled");
+        location.reload()
       }
     }
+  }
+
+  editAppointmentDialog(id){
+    const dialogRef = this.dialog.open(EditDialogComponent, 
+      {
+        data: {aptId : id}
+      })
+
+    dialogRef.afterClosed().subscribe(
+      data => {if(data == "Success"){location.reload()}}
+    );    
   }
 
 }
