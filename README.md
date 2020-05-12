@@ -1,7 +1,9 @@
 # Bloodline Web Application
-A Progressive Web Application which serves to essentially sensitize and encourage users to donate blood.
+A Progressive Web Application which serves to essentially sensitize and encourage users to donate blood through user-friendly interface. The project is split into two github repositories consisting of the front end and back end respectively. The project was created using the JAM  (Javascript API Markup)  stack with the front end application being built with angular 9.1.1 and the back end application server with flask 1.0.2.
 
-## Features
+The front end application implements the usage of GoogleMaps API as a Software as a Service (SAAS) for the display of blood centers. Gunicorn was the Web Server Gateway Interface chosen.
+
+### Features of The Application
 
 * The single-page website will host and present all the information necessary to a donor in an organized manner so that they can be knowledgeable of the process they possibly may partake in. 
 
@@ -12,7 +14,6 @@ A Progressive Web Application which serves to essentially sensitize and encourag
 * Hosts will be able to manage the appointments scheduled with the centre that they are employed in. This will include the ability to accept or reject an appointment in a given scenario. 
 
 * A user of the application will be able to register, login,  and view his account information. 
-
 
 
 
