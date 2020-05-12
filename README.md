@@ -16,8 +16,60 @@ The front end application implements the usage of GoogleMaps API as a Software a
 * A user of the application will be able to register, login,  and view his account information. 
 
 
+## Dependencies
+* agm/core: ^1.1.0
+* angular/animations: ~9.1.1
+* angular/cdk: ^9.2.1
+* angular/common: ~9.1.1
+* angular/compiler: ~9.1.1
+* angular/core: ~9.1.1
+* angular/forms: ~9.1.1
+* angular/material: ^9.2.1
+* angular/platform-browser: ~9.1.1
+* angular/platform-browser-dynamic: ~9.1.1
+* angular/router: ~9.1.1
+* angular2-jwt": ^0.2.3
+* ngx-cookie-service: ^3.0.4
+* rxjs: ~6.5.4
+* tslib: ^1.10.0
+* zone.js: ~0.10.2
+
+## Developer Dependencies
+* angular-devkit/build-angular": "~0.901.1
+* angular/cli: ~9.1.1
+* angular/compiler-cli: ~9.1.1
+* angular/language-service: ~9.1.1
+* types/node: ^12.11.1
+* types/jasmine: ~3.5.0
+* types/jasminewd2: ~2.0.3
+* codelyzer: ^5.1.2
+* jasmine-core: ~3.5.0
+* jasmine-spec-reporter: ~4.2.1
+* karma: ~4.4.1
+* karma-chrome-launcher: ~3.1.0
+* karma-coverage-istanbul-reporter: ~2.1.0
+* karma-jasmine: ~3.0.1
+* karma-jasmine-html-reporter: ^1.4.2
+* protractor: ~5.4.3
+* ts-node: ~8.3.0
+* tslint: ~6.1.0
+* typescript: ~3.8.3
+   
+    
+
 ## Build Instructions
 The instructions to build can be found [here](https://github.com/kumar100966/BloodLine/tree/master/Bloodline#bloodline).
+
+### Scripts
+```
+ng
+ng serve
+ng build
+ng test
+ng lint
+ng e2e
+```
+
 
 ## Creators
 * [akeelhenry](https://github.com/akeelhenry)
