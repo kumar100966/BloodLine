@@ -16,8 +16,8 @@ The front end application implements the usage of GoogleMaps API as a Software a
 * A user of the application will be able to register, login,  and view his account information. 
 
 
-## [Build instructions](https://github.com/kumar100966/BloodLine/tree/master/Bloodline#bloodline)
-
+## Build Instructions
+The instructions to build can be found [here](https://github.com/kumar100966/BloodLine/tree/master/Bloodline#bloodline).
 
 ## Creators
 * [akeelhenry](https://github.com/akeelhenry)
