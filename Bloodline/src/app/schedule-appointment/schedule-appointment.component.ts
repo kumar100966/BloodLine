@@ -19,6 +19,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   loading = true;
   appointment;
   rejected = false;
+  isCompleted = false; 
 
   //Sets map to Trinidad and Tobago
   latitude = 10.556176;
@@ -105,6 +106,12 @@ export class ScheduleAppointmentComponent implements OnInit {
       this.loading = false;
       this.noAppointment = true;
       this.hasAppointment = false;
+    }else if(this.appointment[this.appointment.length-1].status == "Completed"){
+      this.rejected = false;
+      this.loading = false;
+      this.noAppointment = false;
+      this.hasAppointment = false;
+      this.isCompleted = true; 
     }
   }
 
