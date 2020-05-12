@@ -24,6 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSidenavModule} from "@angular/material/sidenav"; 
 //End angular material components
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -69,6 +70,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component'
     MatTabsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC7xKpd3WpNJdfXTSebss-DREnr-rM4ecE'
     })

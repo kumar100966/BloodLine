@@ -7,3 +7,19 @@ mat-card{
 #name, #username {
     text-align: initial;
 }
+
+#namecolor{
+    color: #f44336;
+}
+
+#buttons{
+    display: inline-block; text-align: center; margin: auto;
+}
+
+button{
+    margin: 10px;
+}
+
+#authorized{
+    margin-top: 15%;
+}

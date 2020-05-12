@@ -1,4 +1,4 @@
-<header class="w3-container w3-red w3-center" style="display: block; margin-top: 30px;">
+<header class="w3-container w3-red w3-center" id="header">
   <h1 class="w3-margin w3-xxxlarge w3-animate-opacity">Schedule Appointment</h1>
 </header>
 
@@ -77,6 +77,9 @@
     <mat-card *ngIf="a.status=='Scheduled' || a.status=='Confirmed'">
       <mat-card-content>
         <h1>Upcoming Appointment</h1>
+        <div *ngFor="let c of centers">
+          <h3 *ngIf="c.value == a.centreId">{{c.viewValue}}</h3>
+        </div>
         <h3>{{a.date}}</h3>
         <h3>{{a.time}}</h3>
         <h3>Status: {{a.status}}</h3>

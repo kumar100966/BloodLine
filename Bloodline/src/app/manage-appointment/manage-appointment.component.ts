@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { HttpOperationsService } from '../http-operations.service'; 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-manage-appointment',
@@ -10,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ManageAppointmentComponent implements OnInit {
   
-
+@ViewChild('tab') tab;
 host = false;
 appointments;
 users = [];
@@ -21,6 +22,15 @@ constructor(public dialog: MatDialog, private ajax:HttpOperationsService, privat
 
   ngOnInit(): void {
     this.onLoad();
+  }
+
+  handleMatTabChange(event: MatTabChangeEvent) {
+    localStorage.setItem('userTabLocation', event.index.toString());
+  }
+
+  ngAfterViewInit() {
+    let index = localStorage.getItem('userTabLocation') || 0;
+    this.tab.selectedIndex = index; 
   }
 
   async onLoad(){

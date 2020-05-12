@@ -8,26 +8,14 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Bloodline';
+  
+  userid = localStorage.getItem('userid');
+  usertype = localStorage.getItem('usertype');
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    let userid = localStorage.getItem('userid');
-    let usertype = localStorage.getItem('usertype');
 
-    if(userid == null){
-      document.getElementById("manage").style.display = "none"; 
-      document.getElementById("login").style.display = "inline";
-      document.getElementById("logout").style.display = "none";
-    }
-
-    if(userid != null){
-      document.getElementById("login").style.display = "none";
-      document.getElementById("logout").style.display = "inline";
-    }
-    if(usertype == "u"){
-      document.getElementById("manage").style.display = "none";
-    }
   }
 
   logout(){
@@ -42,4 +30,5 @@ export class AppComponent {
       window.location.reload();
     }, 50);
   }
+  
 }

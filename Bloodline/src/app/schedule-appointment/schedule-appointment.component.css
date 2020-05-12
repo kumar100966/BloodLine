@@ -55,3 +55,7 @@ button{
     margin-left: 10px;
     margin-right: 10px;
 }
+
+#header{
+    display: block; margin-top: 30px;
+}

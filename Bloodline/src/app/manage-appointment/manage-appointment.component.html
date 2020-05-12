@@ -3,22 +3,22 @@
   </header>
 
   <div *ngIf="host; else placeholder">
-  <mat-tab-group mat-align-tabs="center" dynamicHeight>
+  <mat-tab-group id="tab" #tab mat-align-tabs="center" dynamicHeight (selectedTabChange)="handleMatTabChange($event)">
     <mat-tab label="New Appointments">
       <mat-list role="list" *ngFor="let d of data">
         <mat-card *ngIf="d.appointment.status=='Scheduled'">
             <mat-list-item>
                 <img matListAvatar src="/assets/img/avatar.webp" alt="userimage">
-                <h1 id="name" matLine><span style="color: #f44336;">User Name: {{d.user.username}}</span></h1>
+                <h1 id="name" matLine><span id="namecolor">@{{d.user.username}}</span></h1>
                 <h1 id="name" matLine>Name: {{d.user.fName}} {{d.user.lName}}</h1>
                 <h1 id="name" matLine>Date: {{d.appointment.date}}</h1>
                 <h1 id="name" matLine>Time: {{d.appointment.time}}</h1>
                 <h1 id="name" matLine>Status: {{d.appointment.status}}</h1>
             </mat-list-item>
             <mat-list-item>
-              <div style="display: inline-block; text-align: center; margin: auto;">
-                <button mat-raised-button color="primary" (click)="rejectAppointment(d.appointment.aptId)" style="margin: 10px;">Reject</button>
-                <button mat-raised-button color="primary" (click)="confirmAppointment(d.appointment.aptId)" style="margin: 10px;">Confirm</button>
+              <div id="buttons">
+                <button mat-raised-button color="primary" (click)="rejectAppointment(d.appointment.aptId)">Reject</button>
+                <button mat-raised-button color="primary" (click)="confirmAppointment(d.appointment.aptId)">Confirm</button>
               </div>
             </mat-list-item>
         </mat-card>
@@ -29,15 +29,15 @@
             <mat-card *ngIf="d.appointment.status=='Confirmed'">
                 <mat-list-item>
                     <img matListAvatar src="/assets/img/avatar.webp" alt="userimage">
-                    <h1 id="name" matLine><span style="color: #f44336;">User Name: {{d.user.username}}</span></h1>
+                    <h1 id="name" matLine><span id="namecolor">@{{d.user.username}}</span></h1>
                     <h1 id="name" matLine>Name: {{d.user.fName}} {{d.user.lName}}</h1>
                     <h1 id="name" matLine>Date: {{d.appointment.date}}</h1>
                     <h1 id="name" matLine>Time: {{d.appointment.time}}</h1>
                     <h1 id="name" matLine>Status: {{d.appointment.status}}</h1>
                 </mat-list-item>
                 <mat-list-item>
-                  <div style="display: inline-block; text-align: center; margin: auto;">
-                    <button mat-raised-button color="primary" (click)="completeAppointment(d.appointment.aptId)" style="margin: 10px;">Complete</button>
+                  <div id="buttons">
+                    <button mat-raised-button color="primary" (click)="completeAppointment(d.appointment.aptId)">Complete</button>
                   </div>
                   </mat-list-item>
             </mat-card>
@@ -47,5 +47,5 @@
 </div>
 
 <ng-template #placeholder>
-  <div class="w3-opacity" style="margin-top: 15%;"><h1><b>401 - You Are Not Authorized To View This Page </b></h1></div>
+  <div class="w3-opacity" id="authorized"><h1><b>401 - You Are Not Authorized To View This Page </b></h1></div>
 </ng-template>

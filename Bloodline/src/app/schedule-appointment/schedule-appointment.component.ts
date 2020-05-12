@@ -83,6 +83,12 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.appointment = await this.ajax.requestUserAppointment(localStorage.getItem('userid'));
     console.log(this.appointment);
 
+    if(this.appointment == null){
+      this.hasAppointment = false;
+      this.noAppointment = true;
+      this.loading = false;
+    }
+
     if(this.appointment[this.appointment.length-1].status == "Scheduled" || this.appointment[this.appointment.length-1].status == "Confirmed"){
       this.hasAppointment = true;
       this.noAppointment = false;

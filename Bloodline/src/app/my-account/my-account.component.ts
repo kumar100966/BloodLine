@@ -40,7 +40,6 @@ export class MyAccountComponent implements OnInit {
     
   }
 
-
   async onSubmit(loginForm){
 
     let data = {
@@ -96,12 +95,10 @@ export class MyAccountComponent implements OnInit {
       this.registerFailed = true; 
     }else{
       this.registerFailed = false;
-    
+      
       setTimeout(()=>{
         window.location.reload();
-      }, 100);
-
-      this.router.navigate([''])
+      }, 200);
     }
 
     
