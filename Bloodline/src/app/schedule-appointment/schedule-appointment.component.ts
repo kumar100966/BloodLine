@@ -169,7 +169,7 @@ export class ScheduleAppointmentComponent implements OnInit {
       });
     }
     else{
-      let snackBarRef = this.snackBar.open("Error, Please Try Again", "Dismiss", {duration: 5000, panelClass: ['snackbar']});
+      let snackBarRef = this.snackBar.open("Error, Please Login or Try Again", "Dismiss", {duration: 5000, panelClass: ['snackbar']});
     }
 
   }
