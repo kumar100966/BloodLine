@@ -16,7 +16,8 @@ The front end application implements the usage of GoogleMaps API as a Software a
 * A user of the application will be able to register, login,  and view his account information. 
 
 ## Architecture
-[arcitecture img](https://ibb.co/KwbZpj2)
+![arcitecture img](https://github.com/SimplyTim/Bloodline-Web-App/blob/master/WhatsApp%20Image%202020-05-12%20at%208.22.36%20PM.jpeg)
+
 The architecture of the Web Application is a JAM stack approach and requests the web services of this application server, GoogleMaps API,SQL Alchemy and Gunicorn. The front end was build using Angular.
 
 
