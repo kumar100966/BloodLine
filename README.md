@@ -15,6 +15,11 @@ The front end application implements the usage of GoogleMaps API as a Software a
 
 * A user of the application will be able to register, login,  and view his account information. 
 
+## Architecture
+[arcitecture img](https://ibb.co/KwbZpj2)
+The architecture of the Web Application is a JAM stack approach and requests the web services of this application server, GoogleMaps API,SQL Alchemy and Gunicorn. The front end was build using Angular.
+
+
 
 ## Dependencies
 * agm/core: ^1.1.0
