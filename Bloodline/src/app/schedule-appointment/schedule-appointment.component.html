@@ -98,3 +98,8 @@
 	<h3>Success!</h3>
 	<p>Appointment Completed. You deserve a cookie!</p>
 </div> 
+
+<div *ngIf="notloggedin" style="margin-top: 100px;">
+  <div class="w3-opacity" id="authorized"><h1>Please Login/Register To Schedule An Appointment</h1></div>
+  <a routerLink="/Login"><button mat-raised-button color="primary">Login</button></a>
+</div>

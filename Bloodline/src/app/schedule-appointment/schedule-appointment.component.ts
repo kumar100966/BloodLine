@@ -19,7 +19,8 @@ export class ScheduleAppointmentComponent implements OnInit {
   loading = true;
   appointment;
   rejected = false;
-  isCompleted = false; 
+  isCompleted = false;
+  notloggedin = true; 
 
   //Sets map to Trinidad and Tobago
   latitude = 10.556176;
@@ -75,7 +76,15 @@ export class ScheduleAppointmentComponent implements OnInit {
 
     })
 
-    this.appointmentCheck();
+    if(localStorage.getItem('userid') == null){
+      this.notloggedin = true;
+      this.loading = false;
+    }
+    else{
+      this.notloggedin = false;
+      this.appointmentCheck();
+    }
+    
   }
 
    //Check for appointment
@@ -169,7 +178,7 @@ export class ScheduleAppointmentComponent implements OnInit {
       });
     }
     else{
-      let snackBarRef = this.snackBar.open("Error, Please Login or Try Again", "Dismiss", {duration: 5000, panelClass: ['snackbar']});
+      let snackBarRef = this.snackBar.open("Error, Please Try Again", "Dismiss", {duration: 5000, panelClass: ['snackbar']});
     }
 
   }
